@@ -1,0 +1,10 @@
+<h2>Topics</h2>
+<ul class="media-list">
+  <li class="media" ng-repeat="user in users.all">
+    <ul class="media-list">
+      <li class="media" ng-repeat="topic in user.topics">
+          <p>{{ topic.title }}</p>
+      </li>
+    </ul>
+  </li>
+</ul>

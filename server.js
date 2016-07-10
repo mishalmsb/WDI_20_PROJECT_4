@@ -10,10 +10,12 @@ var methodOverride = require("method-override");
 var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var app            = express();
-
 var config         = require('./config/config');
 var User           = require('./models/user');
 var secret         = require('./config/config').secret;
+
+// var User = require('./models/user');
+// User.collection.drop();
 
 mongoose.connect(config.database);
 
@@ -52,10 +54,5 @@ app.use(function (err, req, res, next) {
 
 var routes = require('./config/routes');
 app.use("/api", routes);
-
-// app.get('/api', function(req, res){
-//   return res.sendFile(__dirname + '/public/test.html');
-//   // console.log(__dirname + '/public/index-copy-mishal.html')
-// });
 
 app.listen(config.port);

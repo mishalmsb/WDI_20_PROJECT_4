@@ -5,7 +5,7 @@ angular
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
-  
+
 // angular
 //   .module('logging', ['ngResource', 'angular-jwt', 'ui.router'])
 //   .constant('API', 'http://localhost:3000/api')
@@ -38,6 +38,18 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           $scope.$parent.users.user = res.user;
         });
       }
+    })
+    .state('topics', {
+      url: "/topics",
+      templateUrl: "./js/views/topics/index.html"
+    })
+    .state('topic', {
+      url: "/topic/:id",
+      templateUrl: "./js/views/topics/index.html"
+    })
+    .state('newTopic', {
+      url: "/topic",
+      templateUrl: "./js/views/topics/new.html"
     });
 
   $urlRouterProvider.otherwise("/");

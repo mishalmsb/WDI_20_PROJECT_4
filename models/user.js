@@ -4,13 +4,13 @@ var validator = require('validator');
 
 var userSchema = mongoose.Schema({
   local: {
-    username:     { type: String },
+    username:     { type: String, unique: true, required: true },
     fullname:     { type: String },
     image:        { type: String },
     email:        { type: String, unique: true, required: true },
     passwordHash: { type: String, required: true }
   },
-  projects: [{ type: mongoose.Schema.ObjectId, ref: 'Project' }]
+  topics:         [{ type: mongoose.Schema.ObjectId, ref: 'Topic' }]
 });
 
 /* Validate password */

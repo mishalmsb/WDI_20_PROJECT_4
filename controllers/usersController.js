@@ -1,18 +1,31 @@
 var User   = require('../models/user');
 
 function usersIndex(req, res) {
-  User.find(function(err, users){
+  User.find().populate("topics").exec(function(err, users){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
     res.status(200).json({ users: users });
   });
 }
 
+
 function usersShow(req, res){
-  User.findById(req.params.id, function(err, user){
+  User.findById(req.params.id).populate("topics").exec(function(err, user){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
     res.status(200).json({ user: user });
   });
 }
+
+// function usersShow(req, res) {
+//
+//   var id = req.params.id;
+//
+//   User.findById({ _id: id }).populate("locations").exec(function(err, user) {
+//     if (err) return res.status(500).send(err);
+//     if (!user) return res.status(404).send(err);
+//
+//     res.status(200).send(user: user);
+//   })
+// }
 
 function usersUpdate(req, res){
   User.findById(req.params.id,  function(err, user) {
