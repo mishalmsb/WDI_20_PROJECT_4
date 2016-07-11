@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
     passwordHash: { type: String, required: true }
   },
   topics:         [{ type: mongoose.Schema.ObjectId, ref: 'Topic' }]
+  // elements:       [{ type: mongoose.Schema.ObjectId, ref: 'Element' }],
 });
 
 /* Validate password */

@@ -44,13 +44,25 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: "./js/views/topics/index.html"
     })
     .state('topic', {
-      url: "/topic/:id",
-      templateUrl: "./js/views/topics/index.html"
+      url: "/topics/:id",
+      templateUrl: "./js/views/topics/show.html",
+      controller: function($scope, $stateParams, Topic) {
+        //console.log($stateParams.id);
+        Topic.get({ id: $stateParams.id }, function(res){
+          $scope.$parent.topics.topic = res.topic;
+          // console.log($scope.$parent.topics.topic);
+        });
+      }
     })
     .state('newTopic', {
-      url: "/topic",
+      url: "/topics",
       templateUrl: "./js/views/topics/new.html"
+    })
+    .state('chat', {
+      url: "/chat",
+      templateUrl: "./js/views/chat/chat.html"
     });
+
 
   $urlRouterProvider.otherwise("/");
 }

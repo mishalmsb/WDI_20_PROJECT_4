@@ -1,18 +1,18 @@
-var express        = require('express');
-var cors           = require('cors');
-var path           = require('path');
-var morgan         = require('morgan');
-var bodyParser     = require('body-parser');
-var mongoose       = require('mongoose');
-var passport       = require('passport');
-var cookieParser   = require("cookie-parser");
-var methodOverride = require("method-override");
-var jwt            = require('jsonwebtoken');
-var expressJWT     = require('express-jwt');
-var app            = express();
-var config         = require('./config/config');
-var User           = require('./models/user');
-var secret         = require('./config/config').secret;
+var express         = require('express');
+var cors            = require('cors');
+var path            = require('path');
+var morgan          = require('morgan');
+var bodyParser      = require('body-parser');
+var mongoose        = require('mongoose');
+var passport        = require('passport');
+var cookieParser    = require("cookie-parser");
+var methodOverride  = require("method-override");
+var jwt             = require('jsonwebtoken');
+var expressJWT      = require('express-jwt');
+var app             = express();
+var config          = require('./config/config');
+var User            = require('./models/user');
+var secret          = require('./config/config').secret;
 
 // var User = require('./models/user');
 // User.collection.drop();
@@ -52,7 +52,26 @@ app.use(function (err, req, res, next) {
   next();
 });
 
+
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-app.listen(config.port);
+var io = require('socket.io').listen(app.listen(config.port));
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+
+  // var room = 'choose some room';
+  // socket.join(room);
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+  socket.on('chat message' , function(data) {
+      io.emit('chat message' , data);
+      //console.log(data);
+      //socket.broadcast.emit('chat message' , data);
+  });
+
+});

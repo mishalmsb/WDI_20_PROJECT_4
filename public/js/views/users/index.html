@@ -9,6 +9,8 @@
     <div class="media-body">
       <h4 class="media-heading">{{ user.local.fullname }}</h4>
       <p>{{ user.local.email }}</p>
+      <a ui-sref="user({ id: user._id })"> {{ user.local.email }} </a>
+
     </div>
   </li>
 </ul>

@@ -19,11 +19,15 @@ router.route('/users/:id')
   .patch(usersController.usersUpdate)
   .delete(usersController.usersDelete);
 
-router.route('/users')
-  .get(usersController.usersIndex);
-
-router.route('/users/:id/topics')
+router.route('/topics')
   .get(topicsController.topicsIndex)
   .post(topicsController.topicCreate);
+
+router.route('/topics/:id')
+  .get(topicsController.topicsShow);
+
+// router.route('/users/:id/topics')
+//   .get(topicsController.topicsIndex)
+//   .post(topicsController.topicCreate);
 
 module.exports = router;

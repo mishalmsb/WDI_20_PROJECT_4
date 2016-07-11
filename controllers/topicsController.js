@@ -6,7 +6,7 @@ function topicCreate(req, res) {
   topic.save(function(err,topic){
   if (err) return res.status(500).json({ error: 'Error'});
     res.json(topic);
-    User.findById( req.params.id, function(err, user) {
+    User.findById( topic.user, function(err, user) {
       if (err) return res.status(500).json({ error: 'Error'});
       user.topics.push(topic)
       user.save()
@@ -15,15 +15,23 @@ function topicCreate(req, res) {
 }
 
 function topicsIndex(req, res) {
-  Topic.find(function(err, users){
+  Topic.find(function(err, topics){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
     res.status(200).json({ topics: topics });
   });
 }
 
+function topicsShow(req, res){
+  Topic.findById(req.params.id).populate("user").exec(function(err, topic){
+    if (err) return res.status(404).json({message: 'Something went wrong.'});
+    res.status(200).json({ topic: topic });
+  });
+}
+
 module.exports = {
   topicCreate:  topicCreate,
-  topicsIndex:  topicsIndex
+  topicsIndex:  topicsIndex,
+  topicsShow:   topicsShow
 };
 
 // module.exports = {
