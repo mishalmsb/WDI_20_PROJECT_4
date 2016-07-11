@@ -5,12 +5,7 @@ angular
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
-
-// angular
-//   .module('logging', ['ngResource', 'angular-jwt', 'ui.router'])
-//   .constant('API', 'http://localhost:3000/api')
-//   .config(MainRouter)
-
+  
 MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -47,7 +42,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: "/topics/:id",
       templateUrl: "./js/views/topics/show.html",
       controller: function($scope, $stateParams, Topic) {
-        //console.log($stateParams.id);
         Topic.get({ id: $stateParams.id }, function(res){
           $scope.$parent.topics.topic = res.topic;
           // console.log($scope.$parent.topics.topic);
@@ -62,7 +56,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: "/chat",
       templateUrl: "./js/views/chat/chat.html"
     });
-
 
   $urlRouterProvider.otherwise("/");
 }

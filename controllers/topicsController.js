@@ -3,6 +3,7 @@ var Topic      = require('../models/topic');
 
 function topicCreate(req, res) {
   var topic = new Topic(req.body.topic);
+  console.log(topic);
   topic.save(function(err,topic){
   if (err) return res.status(500).json({ error: 'Error'});
     res.json(topic);

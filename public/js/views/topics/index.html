@@ -1,14 +1,22 @@
+<style>
+
+
+</style>
+
+
 <h2>Topics</h2>
+  <p>
+    users online: 
+    {{ users.onlineUsers }}
+  </p>
     <ul class="media-list">
       <li class="media" ng-repeat="topic in topics.all">
           <p> User {{ topic.user }}  </p>
           <p> Topic {{ topic._id }}  </p>
           <p>
-            <!-- <a href="#" ui-sref="ShowOrder/57818138bae28b7ca91e3288"> {{ topic.title }} </a> -->
+
             <a ui-sref="topic({ id: topic._id })"> {{ topic.title }} </a>
-            <!-- <a ui-sref="user({ id: user._id })"> {{ user.local.email }} </a> -->
           </p>
-          <!-- <button type="button" name="buttonDelete"> Delete </button>
-          <button type="button" name="buttonChat">    Chat  </button> -->
+          <button type="button" name="buttonChat" ng-hide="users.checkUserOnline(topic.user)"> Chat </button> -->
       </li>
     </ul>

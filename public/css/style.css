@@ -1,3 +1,14 @@
 .media-object {
   max-width: 60px;
 }
+li.online {
+
+    color:green;
+
+}
+
+li.offline {
+
+    color:red;
+
+}

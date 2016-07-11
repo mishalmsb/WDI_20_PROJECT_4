@@ -11,38 +11,53 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   self.currentUser      = null;
   self.chat             = "";
   self.topicId          = "";
+  self.getTopics        = getTopics;
+  self.getTopic         = getTopic;
+  self.createTopic      = createTopic;
 
-  self.getTopics = function() {
+  function getTopics() {
     Topic.query(function(data){
       self.all = data.topics;
     });
   }
 
-  self.getTopic = function() {
+  function getTopic() {
     self.topicId = $stateParams.topicId;
     console.log(self.topicId);
   }
 
-  self.createTopic = function() {
+  function createTopic() {
     self.currentUser  = CurrentUser.getUser();
     self.topic.user   = self.currentUser._id;
     $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
         //console.log(data);
      });
-     self.getTopics();
+     getTopics();
   }
 
-  self.sendMessege = function() {
-      // self.currentUser  = CurrentUser.getUser();
-      // socket.emit('chat message', self.chat);
-  }
+  getTopics();
 
-  var socket = io();
-  socket.on('chat message' , function(message){
-    // var myEl = angular.element( document.querySelector( '#chatRoom' ) );
-    // myEl.append(self.currentUser.local.username + " : " + message+'<br/>');
-  });
 
-  self.getTopics();
+  // self.getTopics = function() {
+  //   Topic.query(function(data){
+  //     self.all = data.topics;
+  //   });
+  // }
+  //
+  // self.getTopic = function() {
+  //   self.topicId = $stateParams.topicId;
+  //   console.log(self.topicId);
+  // }
+  //
+  // self.createTopic = function() {
+  //   self.currentUser  = CurrentUser.getUser();
+  //   self.topic.user   = self.currentUser._id;
+  //   $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
+  //       //console.log(data);
+  //    });
+  //    self.getTopics();
+  // }
+  //
+  // self.getTopics();
   return self;
 }

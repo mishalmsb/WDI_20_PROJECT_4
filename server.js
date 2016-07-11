@@ -13,7 +13,9 @@ var app             = express();
 var config          = require('./config/config');
 var User            = require('./models/user');
 var secret          = require('./config/config').secret;
-
+var online          = [];
+var onlineUsers     = [];
+var onlineUserId          = null;
 // var User = require('./models/user');
 // User.collection.drop();
 
@@ -59,19 +61,34 @@ app.use("/api", routes);
 var io = require('socket.io').listen(app.listen(config.port));
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+    console.log('a user connected');
 
-  // var room = 'choose some room';
-  // socket.join(room);
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
+    socket.on('onlineUser', function(user) {
+      if (user) {
+        onlineUserId = user._id;
+        socket.userId = user._id;
+        if (onlineUsers.indexOf(user._id) == -1) {
+          onlineUsers.push(socket.userId);
+        }
+      }
+      io.sockets.emit('onlineUser' , onlineUsers);
+    })
 
-  socket.on('chat message' , function(data) {
-      io.emit('chat message' , data);
-      //console.log(data);
-      //socket.broadcast.emit('chat message' , data);
-  });
+
+
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
+      // online.splice(online.indexOf(socket.user_id) , 1);
+      // socket.broadcast.emit('online response' , {
+      //   id : socket.user_id,
+      //   online: false
+      // });
+    });
+
+    socket.on('chat message' , function(data) {
+        io.emit('chat message' , data);
+        //socket.broadcast.emit('chat message' , data);
+    });
 
 });

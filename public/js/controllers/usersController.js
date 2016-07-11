@@ -16,6 +16,14 @@ function UsersController(User, CurrentUser, $state){
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
+  self.status   = null;
+
+  var socket = io();
+  socket.on('onlineUser' , function(data){
+      //socket.emit('onlineUser' , self.currentUser);
+      self.onlineUsers = data;
+      console.log("onlien array " + self.onlineUsers);
+  });
 
   function getUsers() {
     User.query(function(data){
@@ -29,12 +37,14 @@ function UsersController(User, CurrentUser, $state){
       self.getUsers();
       $state.go('user');
     }
-    self.currentUser = CurrentUser.getUser();
   }
 
   function handleError(e) {
-    //console.log(e.data.message);
     self.error = e.data.message;
+  }
+
+  self.handleUserOnline = function() {
+
   }
 
   function register() {
@@ -42,9 +52,7 @@ function UsersController(User, CurrentUser, $state){
   }
 
   function login() {
-
     User.login(self.user, handleLogin, handleError);
-
   }
 
   function logout() {
@@ -54,13 +62,30 @@ function UsersController(User, CurrentUser, $state){
   }
 
   function checkLoggedIn() {
+    var c = 0;
     self.currentUser = CurrentUser.getUser();
+    //socket.emit('onlineUser' , self.currentUser);
     return !!self.currentUser;
   }
 
   if (checkLoggedIn()) {
+
     self.getUsers();
   }
+
+  // self.checkUserOnline = function(userId) {
+  //   //console.log(userId);
+  //   if (userId != undefined) {
+  //     if (self.onlineUsers.indexOf(userId) < 0) {
+  //       return true;
+  //     }
+  //   }
+  // };
+
+  angular.element(document).ready(function () {
+    self.currentUser = CurrentUser.getUser();
+    socket.emit('onlineUser' , self.currentUser);
+  });
 
   return self;
 }
