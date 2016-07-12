@@ -26,6 +26,7 @@
   <script type="text/javascript" src="js/services/tokenService.js"></script>
   <script type="text/javascript" src="js/services/currentUser.js"></script>
   <script type="text/javascript" src="js/services/currentTopic.js"></script>
+  <script type="text/javascript" src="js/services/socketsService.js"></script>
 
 
   <!-- Stylesheets -->
@@ -54,16 +55,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li ng-show="users.checkLoggedIn()">
-              <a href="#" ui-sref="users">Users</a>
+              <a href="#" ui-sref="users">Topics</a>
             </li>
-            <li ng-show="users.checkLoggedIn()">
+            <!-- <li ng-show="users.checkLoggedIn()">
               <a href="#" ui-sref="topics">Topics</a>
+            </li> -->
+            <li ng-show="users.checkLoggedIn()">
+              <a href="#" ui-sref="newTopic">New Topics</a>
             </li>
             <li ng-show="users.checkLoggedIn()">
-              <a href="#" ui-sref="newTopic">New  Topics</a>
-            </li>
-            <li ng-show="users.checkLoggedIn()">
-              <a href="#" ui-sref="chat">chat </a>
+              <a href="#" ui-sref="user">Profile</a>
             </li>
             <li ng-hide="users.checkLoggedIn()">
               <a href="#" ui-sref="login">Login</a>

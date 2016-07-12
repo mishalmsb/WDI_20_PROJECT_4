@@ -5,13 +5,34 @@ angular
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
-  
+.filter('online', function() {
+
+  // Create the return function and set the required parameter name to **input**
+  return function(input , onlineUsers) {
+
+    var out = [];
+
+    // Using the angular.forEach method, go through the array of data and perform the operation of figuring out if the language is statically or dynamically typed.
+    angular.forEach(input, function(user) {
+
+      if(onlineUsers.indexOf(user._id) !== -1) {
+        out.push(user);
+      }
+
+    });
+
+    return out;
+  }
+
+});
+
 MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "./js/views/home.html"
+      templateUrl: "./js/views/home.html",
+      controller: "UsersController as users"
     })
     .state('login', {
       url: "/login",
@@ -23,7 +44,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('users', {
       url: "/users",
-      templateUrl: "./js/views/users/index.html"
+      templateUrl: "./js/views/users/index.html",
+      controller: "UsersController as users"
     })
     .state('user', {
       url: "/users/:id",
@@ -36,7 +58,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('topics', {
       url: "/topics",
-      templateUrl: "./js/views/topics/index.html"
+      templateUrl: "./js/views/topics/index.html",
+      controller: "TopicsController as topics"
     })
     .state('topic', {
       url: "/topics/:id",

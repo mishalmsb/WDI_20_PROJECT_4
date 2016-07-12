@@ -1,4 +1,4 @@
-<!-- <h4> {{ topics.topic }} </h4> -->
+<h4> {{ topics.topic._id }} </h4>
 <h3> {{ topics.topic.title | uppercase }} </h3>
 <section>
   <div class="row">
@@ -12,18 +12,30 @@
 </section>
 
 <section>
-  <h2>Chat</h2>
   <div id="chatRoom">
 
   </div>
   <form id="newChat" name="chats.newChatForm" ng-submit="chats.sendMessege()" novalidate>
-    <!-- <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.registerForm.$submitted)">{{ users.error }}</div> -->
+    <div class="form-group">
+      <label for="title"> Type message here </label>
+      <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="chats.chat">
+    </div>
+  <button type="submit" class="btn btn-default">Send</button>
+  </form>
+</section>
+<br><br><br>
 
+<section ng-hide="topics.justForOwner('5784fdcaec531309e726950f')">
+  <form id="newTopic" name="topics.updateTopicForm" ng-submit="topics.closeTopic(topics.topic._id)" novalidate>
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="title" ng-model="chats.chat">
+      <input type="text" class="form-control" id="newTopicTitle" placeholder="title" ng-model="topics.topic.title">
+      <label for="solution"> User </label>
+      <input type="text" class="form-control" id="newTopicUser" placeholder="user" ng-model="topics.topic.helpedUser">
+      <label for="user"> Solution </label>
+      <input type="text" class="form-control" id="newTopicSolution" placeholder="Solution" ng-model="topics.topic.solution">
     </div>
-
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
 </section>

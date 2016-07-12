@@ -15,9 +15,13 @@ var User            = require('./models/user');
 var secret          = require('./config/config').secret;
 var online          = [];
 var onlineUsers     = [];
-var onlineUserId          = null;
+var onlineUserId    = null;
+
 // var User = require('./models/user');
 // User.collection.drop();
+
+// var Topic = require('./models/topic');
+// Topic.collection.drop();
 
 mongoose.connect(config.database);
 
@@ -54,7 +58,6 @@ app.use(function (err, req, res, next) {
   next();
 });
 
-
 var routes = require('./config/routes');
 app.use("/api", routes);
 
@@ -62,7 +65,6 @@ var io = require('socket.io').listen(app.listen(config.port));
 
 io.on('connection', function(socket){
     console.log('a user connected');
-
 
     socket.on('onlineUser', function(user) {
       if (user) {
@@ -75,20 +77,12 @@ io.on('connection', function(socket){
       io.sockets.emit('onlineUser' , onlineUsers);
     })
 
-
-
     socket.on('disconnect', function(){
       console.log('user disconnected');
-      // online.splice(online.indexOf(socket.user_id) , 1);
-      // socket.broadcast.emit('online response' , {
-      //   id : socket.user_id,
-      //   online: false
-      // });
     });
 
     socket.on('chat message' , function(data) {
         io.emit('chat message' , data);
         //socket.broadcast.emit('chat message' , data);
     });
-
 });

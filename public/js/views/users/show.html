@@ -1,12 +1,10 @@
-<h1>Hello user</h1>
+<h1> {{ users.currentUser.local.fullname | uppercase }} </h1>
 <section>
   <div class="row">
     <div class="col-sm-6 col-md-4">
       <img ng-src="{{ users.user.local.image }}">
       <div class="caption">
-        hello
-        <h3>{{ users.csurrentUser | uppercase }}</h3>
-        <p>{{ users.user.local.email }}</p>
+        <h3>{{ users.currentUser.local.fullname | uppercase }}</h3>
       </div>
     </div>
   </div>

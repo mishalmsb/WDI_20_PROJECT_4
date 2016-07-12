@@ -24,8 +24,9 @@ router.route('/topics')
   .post(topicsController.topicCreate);
 
 router.route('/topics/:id')
-  .get(topicsController.topicsShow);
-
+  .get(topicsController.topicsShow)
+  .patch(topicsController.topicsUpdate);
+  
 // router.route('/users/:id/topics')
 //   .get(topicsController.topicsIndex)
 //   .post(topicsController.topicCreate);

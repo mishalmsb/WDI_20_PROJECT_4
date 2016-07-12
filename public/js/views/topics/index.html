@@ -1,22 +1,15 @@
-<style>
-
-
-</style>
-
-
 <h2>Topics</h2>
-  <p>
-    users online: 
+  <!-- <p>
+    users online:
     {{ users.onlineUsers }}
-  </p>
-    <ul class="media-list">
-      <li class="media" ng-repeat="topic in topics.all">
-          <p> User {{ topic.user }}  </p>
-          <p> Topic {{ topic._id }}  </p>
-          <p>
-
-            <a ui-sref="topic({ id: topic._id })"> {{ topic.title }} </a>
-          </p>
-          <button type="button" name="buttonChat" ng-hide="users.checkUserOnline(topic.user)"> Chat </button> -->
-      </li>
-    </ul>
+  </p> -->
+<ul class="media-list">
+  <li class="media" ng-repeat="topic in topics.all">
+    <p> User  {{ topic.user }}  </p>
+    <p> Topic {{ topic._id }}  </p>
+    <p>
+      <a ui-sref="topic({ id: topic._id })"> {{ topic.title }} </a>
+    </p>
+    <button type="button" name="buttonChat"> Chat </button> -->
+  </li>
+</ul>

@@ -29,10 +29,19 @@ function topicsShow(req, res){
   });
 }
 
+function topicsUpdate(req, res){
+  Topic.findByIdAndUpdate({ _id: req.params.id }, req.body.topic, function(err, topic){
+    if (err) return res.status(500).send(err);
+    if (!topic) return res.status(404).send(err);
+    res.status(200).send(topic);
+  });
+}
+
 module.exports = {
   topicCreate:  topicCreate,
   topicsIndex:  topicsIndex,
-  topicsShow:   topicsShow
+  topicsShow:   topicsShow,
+  topicsUpdate: topicsUpdate,
 };
 
 // module.exports = {
