@@ -1,11 +1,11 @@
 angular
-  .module('logging', ['angular-jwt', 'ngResource', 'ui.router'])
+  .module('logging', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'ngMdIcons'])
   .constant('API', 'http://localhost:3000/api')
   .config(MainRouter)
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
-.filter('online', function() {
+  .filter('online', function() {
 
   // Create the return function and set the required parameter name to **input**
   return function(input , onlineUsers) {
