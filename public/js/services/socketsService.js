@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .service('SocketsService', SocketsService)
 
 SocketsService.$inject = ['CurrentUser' , '$rootScope'];

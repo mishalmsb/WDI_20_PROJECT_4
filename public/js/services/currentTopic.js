@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .service("CurrentTopic", CurrentTopic);
 
 CurrentTopic.$inject = [];
@@ -10,7 +10,7 @@ function CurrentTopic(){
 
   self.getTopicId = function() {
 
-    
+
   }
 
   self.clearTopicId = function(){

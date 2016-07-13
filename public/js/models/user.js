@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .factory('User', User);
 
 User.$inject = ['$resource', 'API'];

@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .controller('ChatController', ChatController);
 
 ChatController.$inject = ['CurrentUser', '$state', '$http', '$element'];

@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .factory('Topic', Topic);
 
 Topic.$inject = ['$resource', 'API'];

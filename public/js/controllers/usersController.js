@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .controller('UsersController', UsersController);
 
 UsersController.$inject = ['Topic', 'User', 'CurrentUser', '$state' , 'SocketsService' , '$scope'];

@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .service('TokenService', TokenService)
 
 TokenService.$inject = ["$window", "jwtHelper"];

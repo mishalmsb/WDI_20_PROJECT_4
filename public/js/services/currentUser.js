@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('lifeLine')
   .service("CurrentUser", CurrentUser);
 
 CurrentUser.$inject = ["TokenService"];
