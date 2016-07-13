@@ -25,7 +25,9 @@ function topicsIndex(req, res) {
 function topicsShow(req, res){
   Topic.findById(req.params.id).populate("user").exec(function(err, topic){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
+    console.log(res);
     res.status(200).json({ topic: topic });
+
   });
 }
 
