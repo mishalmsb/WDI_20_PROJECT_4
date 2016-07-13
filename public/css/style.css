@@ -1,6 +1,11 @@
 .media-object {
   max-width: 60px;
 }
+
+/*body {
+  background-color: red;
+}*/
+
 $gray: #eee;
 
 md-content.md-default-theme {
