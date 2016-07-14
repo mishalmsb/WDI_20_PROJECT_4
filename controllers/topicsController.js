@@ -3,7 +3,6 @@ var Topic      = require('../models/topic');
 
 function topicCreate(req, res) {
   var topic = new Topic(req.body.topic);
-  console.log(topic);
   topic.save(function(err,topic){
   if (err) return res.status(500).json({ error: 'Error'});
     res.json(topic);
@@ -16,16 +15,20 @@ function topicCreate(req, res) {
 }
 
 function topicsIndex(req, res) {
-  Topic.find(function(err, topics){
+  // Topic.find(function(err, topics){
+  //   if (err) return res.status(404).json({message: 'Something went wrong.'});
+  //   res.status(200).json({ topics: topics });
+  // });
+  Topic.find({}).populate("user").exec(function(err, topics){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
     res.status(200).json({ topics: topics });
+
   });
 }
 
 function topicsShow(req, res){
   Topic.findById(req.params.id).populate("user").exec(function(err, topic){
     if (err) return res.status(404).json({message: 'Something went wrong.'});
-    console.log(res);
     res.status(200).json({ topic: topic });
 
   });

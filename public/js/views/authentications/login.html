@@ -1,30 +1,40 @@
-<section>
-  <h2>Login</h2>
-  <form id="login" name="users.loginForm" ng-submit="users.login()" novalidate>
-    <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.loginForm.$submitted)">{{ users.error }}</div>
-
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="Email" name="email" ng-model="users.user.email" required>
+<div class="overlay">
+  <div layout="column" layout-align="center center" layout-fill="layout-fill">
+    <div layout="column" class="loginBox md-whiteframe-z1">
+      <form id="login" name="users.loginForm" ng-submit="users.login()" novalidate>
+        <md-toolbar>
+          <h2 class="md-toolbar-tools"><span>Login</span></h2>
+          <img src="./assets/images/Stack.png" id="lifeLine" />
+        </md-toolbar>
+        <md-content layout="column" class="md-padding">
+          <md-input-container>
+            <label>EmailAddress</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" name="email" ng-model="users.user.email" required>
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
+          </md-input-container>
+          <div layout="row" layout-align="center center" style="padding-top:20px;">
+            <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+            <div flex="flex"></div>
+            <md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button>
+          </div>
+        </md-content>
+      </form>
     </div>
 
+    <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.loginForm.$submitted)">{{ users.error }}</div>
     <div class="alert alert-danger" role="alert" ng-messages="users.loginForm['email'].$error" ng-show="(users.loginForm.$submitted && users.loginForm['email'].$invalid)">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
       <span ng-message="required">Email is required.</span>
     </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
-    </div>
-
     <div class="alert alert-danger" role="alert" ng-messages="users.loginForm['password'].$error" ng-show="(users.loginForm.$submitted && users.loginForm['password'].$invalid)">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
       <span ng-message="required">Password is required.</span>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</section>
+</div>

@@ -1,4 +1,4 @@
-<h4> {{ topics.topic._id }} </h4>
+<!-- <h4> {{ topics.topic._id }} </h4>
 <h3> {{ topics.topic.title | uppercase }} </h3>
 <section>
   <div class="row">
@@ -8,9 +8,9 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
-<section>
+<!-- <section>
   <div id="chatRoom">
 
   </div>
@@ -21,7 +21,33 @@
     </div>
   <button type="submit" class="btn btn-default">Send</button>
   </form>
-</section>
+</section> -->
+
+<div flex layout="row" layout-align="center top" class="chat">
+    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="150" flex-gt-lg="250" class="md-whiteframe-z2">
+        <md-content class="md-padding">
+            <br>
+            <textarea rows="15" cols="75"  id="chatRoomText"> </textarea>
+
+            <div flex-sm="150" flex-gt-sm="180" layout-sm="column">
+                <!-- <form name="contactForm" data-ng-submit="sendMail()"> -->
+                <form id="newChat" name="topics.newChatForm" ng-submit="topics.sendMessege()" novalidate >
+                    <md-input-container>
+                        <label>Type message here:</label>
+                        <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="topics.chat">
+                        <!-- <input ng-model="contactName" required> -->
+                    </md-input-container>
+
+                    <md-button type="submit" class="md-primary"
+                               aria-label="Send Msg">Send</md-button>
+                    <md-button class="md-primary"
+                              aria-label="Send Msg">Close this topic</md-button>
+                </form>
+            </div>
+        </md-content>
+    </div>
+</div>
+<!--
 <br><br><br>
 
 <section ng-hide="topics.justForOwner('5784fdcaec531309e726950f')">
@@ -38,3 +64,23 @@
   </form>
 
 </section>
+
+<div flex layout="row" layout-align="center center" class="chat">
+    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="150" flex-gt-lg="250" class="md-whiteframe-z2">
+        <md-content class="md-padding">
+            <div flex-sm="150" flex-gt-sm="180" layout-sm="column">
+
+                <form id="newTopic" name="topics.newTopicForm" ng-submit="topics.createTopic()" novalidate>
+                    <md-input-container>
+                        <label>Title:</label>
+                        <input type="text" class="form-control" id="title" placeholder="title" ng-model="topics.topic.title">
+
+                    </md-input-container>
+
+                    <md-button type="submit" class="md-primary"
+                               aria-label="Save Project">Save</md-button>
+                </form>
+            </div>
+        </md-content>
+    </div>
+</div> -->

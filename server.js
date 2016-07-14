@@ -41,6 +41,7 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/bower_components"));
 app.use(passport.initialize());
 
 app.use('/api', expressJWT({ secret: secret })
@@ -77,12 +78,15 @@ io.on('connection', function(socket){
       io.sockets.emit('onlineUser' , onlineUsers);
     })
 
+    socket.on('chat message' , function(data) {
+        io.emit('chat message' , data);
+        //socket.broadcast.emit('chat message' , data);
+        //socket.broadcast.emit('chat message', data);
+    });
+
     socket.on('disconnect', function(){
       console.log('user disconnected');
     });
 
-    socket.on('chat message' , function(data) {
-        io.emit('chat message' , data);
-        //socket.broadcast.emit('chat message' , data);
-    });
+
 });

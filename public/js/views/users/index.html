@@ -1,32 +1,3 @@
-<!-- <ul class="media-list">
-  <li class="media" ng-repeat="user in users.all | online:users.onlineUsers">
-    <div class="media-left">
-      <a ui-sref="user({ id: user._id })">
-        <img class="media-object" ng-src="{{ user.local.image }}">
-      </a>
-    </div>
-    <div class="media-body">
-      <h4 class="media-heading">{{ user.local.fullname }}</h4>
-      <p>{{ user.local.email }}</p>
-      <p>{{ user.status }}</p>
-      <ul class="media-list">
-        <li class="media" ng-repeat="topic in user.topics">
-          <p> Topic:{{ topic.title }}  </p>
-
-          <a ui-sref="topic({ id: topic._id })"> Chat </a>
-        </li>
-      </ul>
-
-    </div>
-  </li>
-</ul> -->
-
-  <!-- <a href="#" ui-sref="chat">chat </a>  -->
-<!-- <a ui-sref="user({ id: user._id })"> {{ user.local.email }} </a> -->
-<!-- <input type="button" ng-click="users.update()"> -->
-
-
-
   <div layout="column" class="relative" layout-fill role="main">
     <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openForm($event)">
       <ng-md-icon icon="add"></ng-md-icon>
@@ -89,8 +60,8 @@
                               <user-avatar></user-avatar>
                           </div>
                           <div class="md-tile-content">
-                            <h3> User   {{topic}}</h3>
-                            <h4> Topic  {{topic}}</h4>
+                            <h3> Topic   {{topic.title}}</h3>
+                            <h4> User    {{user.local.username}} </h4>
                             <p>
                               {{topic.title}}
                                 <a ui-sref="topic({ id: topic._id })"> Chat </a>

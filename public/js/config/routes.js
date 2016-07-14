@@ -5,17 +5,15 @@ angular
   MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
   function MainRouter($stateProvider, $urlRouterProvider) {
     $stateProvider
+      .state('login', {
+        url: "/",
+        templateUrl: "./js/views/authentications/login.html",
+
+      })
       .state('home', {
         url: "/home",
         templateUrl: "./js/views/home.html",
-        controller: "UsersController as users"
-        // data: {
-        //   requireLogin: false
-        // }
-      })
-      .state('login', {
-        url: "/",
-        templateUrl: "./js/views/authentications/login.html"
+        controller: "UsersController as users",
       })
       .state('register', {
         url: "/register",

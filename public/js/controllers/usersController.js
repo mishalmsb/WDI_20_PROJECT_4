@@ -24,6 +24,7 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
 
   $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
       self.onlineUsers = newVal;
+      console.log(self.onlineUsers);
   } , true);
 
 

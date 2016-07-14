@@ -22,23 +22,26 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   self.sendMessege = function() {
       self.currentUser  = CurrentUser.getUser();
       var newMessage = {
-        user:     self.currentUser._id,
+        user:     self.currentUser,
         message:  self.chat
       }
       socket.emit('chat message', newMessage);
-
+      self.chat = "";
   }
   var socket = io();
 
   socket.on('chat message' , function(message){
-    console.log(message);
-    var chatEl = angular.element( document.querySelector( '#chatRoom' ) );
-    chatEl.append(self.currentUser.local.username + " : " + message.message+'<br/>');
-    var newTopicUser = angular.element( document.querySelector( '#newTopicUser' ) );
-    if (message.user != self.currentUser._id ) {
-      self.helpingUser = message.user;
+
+    var chatEl = angular.element( document.querySelector( '#chatRoomText' ) );
+    if (self.currentUser) {
+      chatEl.append(message.user.local.username + " : " + message.message + '&#xA;');
     }
-    newTopicUser.val(self.helpingUser);
+
+    // var newTopicUser = angular.element( document.querySelector( '#newTopicUser' ) );
+    // if (message.user != self.currentUser._id ) {
+    //   self.helpingUser = message.user;
+    // }
+    // newTopicUser.val(self.helpingUser);
   });
 
   self.openChat = function(ev, topicId)
@@ -101,13 +104,12 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   };
 
   function createTopic() {
-    // self.currentUser  = CurrentUser.getUser();
-    // self.topic.user   = self.currentUser._id;
-    // $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
-    //     //console.log(data);
-    //  });
-    //  getTopics();
-    console.log(self.topic);
+    self.currentUser  = CurrentUser.getUser();
+    self.topic.user   = self.currentUser._id;
+    $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
+        console.log(data);
+     });
+     $state.go('users')
   }
 
   function justForOwner(topicId) {
