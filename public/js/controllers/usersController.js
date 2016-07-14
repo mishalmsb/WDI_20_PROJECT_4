@@ -27,7 +27,6 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
   } , true);
 
 
-
   function getUsers() {
     User.query(function(data){
       self.all = data.users;
@@ -52,17 +51,11 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
     // self.socket.emit('onlineUser' , self.currentUser);
   }
 
-  self.handleUserOnline = function() {
-
-  }
-
   function register() {
     User.register(self.user, handleLogin, handleError);
   }
 
   function login() {
-
-
     User.login(self.user, handleLogin, handleError);
   }
 
@@ -84,34 +77,5 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
     // self.getTopics();
   }
 
-  // self.checkUserOnline = function(userId) {
-  //   //console.log(userId);
-  //   if (userId != undefined) {
-  //     if (self.onlineUsers.indexOf(userId) < 0) {
-  //       return true;
-  //     }
-  //   }
-  // };
-
-  // self.sendOnline = function(id) {
-  //   if(self.onlineUsers.indexOf(id) !== -1) {
-  //     return false
-  //   }
-  //   return true
-  // }
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-
-
-// function getTopics() {
-//   Topic.query(function(data){
-//     self.allTopics = data.topics;
-//   });
-// }
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
   return self;
 }
