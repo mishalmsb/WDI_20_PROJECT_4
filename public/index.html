@@ -38,7 +38,7 @@
   <script src="./js/models/topic.js"></script>
   <script src="./js/config/routes.js"></script>
   <script src="./js/filters/online.js"></script>
-  <script src="./js/controllers/appCtrl.js"></script>
+  <script src="./js/controllers/appController.js"></script>
   <script src="./js/controllers/usersController.js"></script>
   <script src="./js/controllers/usersController.js"></script>
   <script src="./js/controllers/topicsController.js"></script>
@@ -52,7 +52,8 @@
 </head>
 <body layout="row" ng-controller="AppCtrl">
 
-  <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+  <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
+  md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-hide="users.checkLoggedIn()">
   <md-toolbar class="md-tall md-hue-2">
     <span flex></span>
     <div layout="column" class="md-toolbar-tools-bottom inset">
@@ -64,7 +65,7 @@
   </md-toolbar>
   <md-list>
   <md-item ng-repeat="item in menu">
-    <a href="#" ui-sref="users">
+    <a ui-sref={{item.link}}>
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
         <div class="inset">
           <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
@@ -75,6 +76,28 @@
     </a>
   </md-item>
   <md-divider></md-divider>
+  <md-item ng-hide="users.checkLoggedIn()">
+    <a href="#" ui-sref="login">
+      <md-item-content md-ink-ripple layout="row" layout-align="start center">
+        <div class="inset">
+          <ng-md-icon icon="login"></ng-md-icon>
+        </div>
+        <div class="inset">Login
+        </div>
+      </md-item-content>
+    </a>
+  </md-item>
+  <md-item  ng-hide="users.checkLoggedIn()">
+    <a href="#"ui-sref="home" ng-click="users.logout()">
+      <md-item-content md-ink-ripple layout="row" layout-align="start center">
+        <div class="inset">
+          <ng-md-icon icon="login"></ng-md-icon>
+        </div>
+        <div class="inset">Logout
+        </div>
+      </md-item-content>
+    </a>
+  </md-item>
 
 </md-list>
 </md-sidenav>

@@ -6,12 +6,15 @@ angular
   function MainRouter($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
-        url: "/",
+        url: "/home",
         templateUrl: "./js/views/home.html",
         controller: "UsersController as users"
+        // data: {
+        //   requireLogin: false
+        // }
       })
       .state('login', {
-        url: "/login",
+        url: "/",
         templateUrl: "./js/views/authentications/login.html"
       })
       .state('register', {

@@ -2,8 +2,8 @@ angular
   .module('lifeLine')
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['Topic', 'User', 'CurrentUser', '$state' , 'SocketsService' , '$scope'];
-function UsersController(Topic, User, CurrentUser, $state , SocketsService , $scope){
+UsersController.$inject = ['Topic', 'User', 'CurrentUser', '$state' , 'SocketsService' , '$scope', '$window', '$mdDialog'];
+function UsersController(Topic, User, CurrentUser, $state , SocketsService , $scope, $window, $mdDialog){
 
   var self = this;
 
@@ -26,6 +26,8 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
       self.onlineUsers = newVal;
   } , true);
 
+
+
   function getUsers() {
     User.query(function(data){
       self.all = data.users;
@@ -38,7 +40,7 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
     if (token) {
       self.getUsers();
       // self.getTopics();
-      $state.go('user');
+      $state.go('home')
     }
     self.currentUser = CurrentUser.getUser();
     self.socket.emit('onlineUser' , self.currentUser);

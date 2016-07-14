@@ -1,14 +1,4 @@
-<!-- <p>
-
-  <li class="media" ng-repeat="user in users.all">
-    <p> {{user._id}} </p>
-    <p> {{user.local.fullname}} </p>
-    <p> ---- </p>
-  </li>
-</p>
-
- <h2>Users</h2>
-<ul class="media-list">
+<!-- <ul class="media-list">
   <li class="media" ng-repeat="user in users.all | online:users.onlineUsers">
     <div class="media-left">
       <a ui-sref="user({ id: user._id })">
@@ -35,11 +25,15 @@
 <!-- <a ui-sref="user({ id: user._id })"> {{ user.local.email }} </a> -->
 <!-- <input type="button" ng-click="users.update()"> -->
 
-<div layout="row" ng-controller="AppCtrl">
+
+
   <div layout="column" class="relative" layout-fill role="main">
-    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openForm($event)">
       <ng-md-icon icon="add"></ng-md-icon>
     </md-button>
+    <!-- <md-button class="md-raised md-primary" data-ng-click="vm.openForm($event)">
+      OPEN DIALOG WIH FORM
+    </md-button> -->
     <md-toolbar ng-show="!showSearch">
       <div class="md-toolbar-tools">
         <span flex></span>
@@ -49,12 +43,8 @@
 
       </div>
       <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-        <md-tab id="tab1" aria-controls="tab1-content">
-          Online
-        </md-tab>
-        <md-tab id="tab2" aria-controls="tab2-content">
-          All
-        </md-tab>
+        <md-tab id="tab1" aria-controls="tab1-content">Online</md-tab>
+        <md-tab id="tab2" aria-controls="tab2-content">All</md-tab>
       </md-tabs>
     </md-toolbar>
     <md-toolbar class="md-hue-1" ng-show="showSearch">
@@ -92,21 +82,25 @@
                 <md-card flex-gt-sm="90" flex-gt-md="80">
                   <md-card-content>
                     <h2> Chat Overflow </h2>
-                    <md-list>
-                      <md-item ng-repeat="topic in topics.all | filter:search">
+                    <md-list ng-repeat="user in users.all | online:users.onlineUsers">
+                      <md-item ng-repeat="topic in user.topics | filter:search">
                         <md-item-content>
                           <div class="md-tile-left inset" hide-sm>
                               <user-avatar></user-avatar>
                           </div>
                           <div class="md-tile-content">
-                            <h3> User   {{topic.user}}</h3>
-                            <h4> Topic  {{topic._id}}</h4>
+                            <h3> User   {{topic}}</h3>
+                            <h4> Topic  {{topic}}</h4>
                             <p>
                               {{topic.title}}
+                                <a ui-sref="topic({ id: topic._id })"> Chat </a>
                             </p>
-                            <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+                            <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openChat($event, topic._id)">
                               <ng-md-icon icon="chat"> </ng-md-icon>
                             </md-button>
+                            <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openForm($event)">
+                              <ng-md-icon icon="add"></ng-md-icon>
+                            </md-button> -->
                           </div>
                         </md-item-content>
                         <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
@@ -144,4 +138,3 @@
       </ui-view>
     </md-content>
   </div>
-</div>

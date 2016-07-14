@@ -1,9 +1,8 @@
-<!-- <h4> {{ topics.topic._id }} </h4>
+<h4> {{ topics.topic._id }} </h4>
 <h3> {{ topics.topic.title | uppercase }} </h3>
 <section>
   <div class="row">
     <div class="col-sm-6 col-md-4">
-      <img ng-src="{{ users.user.local.image }}">
       <div class="caption">
         <p> User: {{ topics.topic.user.local.username }}</p>
       </div>
@@ -13,19 +12,19 @@
 
 <section>
   <div id="chatRoom">
-
+    
   </div>
-  <form id="newChat" name="chats.newChatForm" ng-submit="chats.sendMessege()" novalidate>
+  <form id="newChat" name="topics.newChatForm" ng-submit="topics.sendMessege()" novalidate>
     <div class="form-group">
       <label for="title"> Type message here </label>
-      <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="chats.chat">
+      <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="topics.chat">
     </div>
   <button type="submit" class="btn btn-default">Send</button>
   </form>
 </section>
 <br><br><br>
 
-<section ng-hide="topics.justForOwner('5784fdcaec531309e726950f')">
+<!-- <section ng-hide="topics.justForOwner('5784fdcaec531309e726950f')">
   <form id="newTopic" name="topics.updateTopicForm" ng-submit="topics.closeTopic(topics.topic._id)" novalidate>
     <div class="form-group">
       <label for="title">Title</label>
