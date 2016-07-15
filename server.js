@@ -17,11 +17,11 @@ var online          = [];
 var onlineUsers     = [];
 var onlineUserId    = null;
 
-// var User = require('./models/user');
-// User.collection.drop();
+var User = require('./models/user');
+User.collection.drop();
 
-// var Topic = require('./models/topic');
-// Topic.collection.drop();
+var Topic = require('./models/topic');
+Topic.collection.drop();
 
 mongoose.connect(config.database);
 
