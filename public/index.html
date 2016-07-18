@@ -90,17 +90,6 @@
     </a>
   </md-item>
   <md-divider></md-divider>
-  <!-- <md-item ng-hide="users.checkLoggedIn()">
-    <a href="#" ui-sref="login">
-      <md-item-content md-ink-ripple layout="row" layout-align="start center">
-        <div class="inset">
-          <ng-md-icon icon="login"></ng-md-icon>
-        </div>
-        <div class="inset">Login
-        </div>
-      </md-item-content>
-    </a>
-  </md-item> -->
   <md-item ng-controller="UsersController as users">
     <a href="#" ui-sref="login" ng-click="users.logout()">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -135,7 +124,6 @@
     </section>
     </section>
     </section>
-
   </div>
 </div>
 
