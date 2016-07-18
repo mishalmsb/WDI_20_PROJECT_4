@@ -23,7 +23,10 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
 
   $scope.getName = function() {
     self.currentUser = CurrentUser.getUser();
-    return self.currentUser.local.fullname;
+    if (self.currentUser) {
+      return self.currentUser.local.fullname;
+    }
+
 
   }
   $scope.checkLoggedIn = function() {

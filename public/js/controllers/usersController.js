@@ -47,7 +47,10 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
   }
 
   function handleError(e) {
-    self.error = e.data.message;
+    if (e) {
+      self.error = e.data.message;
+
+    }
     self.currentUser = CurrentUser.getUser();
     // self.socket.emit('onlineUser' , self.currentUser);
   }
