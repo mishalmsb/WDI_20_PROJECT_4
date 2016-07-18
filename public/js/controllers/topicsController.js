@@ -74,11 +74,11 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
 
   function closeTopic(topic) {
     self.topic.resolved = true;
-      $http.patch('http://localhost:3000/api/topics/' + topic, {topic: self.topic})
-        .then(function(res){
-          // getUsers();
-          console.log(res);
-      });
+      // $http.patch('http://localhost:3000/api/topics/' + topic, {topic: self.topic})
+      //   .then(function(res){
+      //     // getUsers();
+      //     console.log(res);
+      // });
   }
 
   function getTopics() {
@@ -106,10 +106,10 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   function createTopic() {
     self.currentUser  = CurrentUser.getUser();
     self.topic.user   = self.currentUser._id;
-    $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
-        console.log(data);
-     });
-     $state.go('users')
+    // $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
+    //     console.log(data);
+    //  });
+    //  $state.go('users')
   }
 
   function justForOwner(topicId) {
