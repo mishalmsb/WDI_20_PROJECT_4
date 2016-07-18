@@ -62,7 +62,8 @@ app.use(function (err, req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-var io = require('socket.io').listen(app.listen(config.port));
+// var io = require('socket.io').listen(app.listen(config.port));
+app.listen(config.port);
 
 io.on('connection', function(socket){
     console.log('a user connected');
