@@ -6,7 +6,8 @@ User.$inject = ['$resource', 'API'];
 function User($resource, API){
 
   return $resource(
-    API+'/users/:id', {id: '@id'},
+    // API+'/users/:id', {id: '@id'},
+    '/users/:id', {id: '@id'},
     { 'get':       { method: 'GET' },
       'save':      { method: 'POST' },
       'query':     { method: 'GET', isArray: false},
