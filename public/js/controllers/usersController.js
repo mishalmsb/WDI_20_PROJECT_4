@@ -24,14 +24,12 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
 
   $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
       self.onlineUsers = newVal;
-      console.log(self.onlineUsers);
   } , true);
 
 
   function getUsers() {
     User.query(function(data){
       self.all = data.users;
-        //console.log(self.all);
     });
   }
 
@@ -39,7 +37,6 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
     var token = res.token ? res.token : null;
     if (token) {
       self.getUsers();
-      // self.getTopics();
       $state.go('home')
     }
     self.currentUser = CurrentUser.getUser();
@@ -47,10 +44,7 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
   }
 
   function handleError(e) {
-    if (e) {
-      self.error = e.data.message;
-
-    }
+    self.error = e.data.message;
     self.currentUser = CurrentUser.getUser();
     // self.socket.emit('onlineUser' , self.currentUser);
   }

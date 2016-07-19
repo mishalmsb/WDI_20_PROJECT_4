@@ -23,8 +23,7 @@ var onlineUserId    = null;
 // var Topic = require('./models/topic');
 // Topic.collection.drop();
 
-// mongoose.connect(config.database);
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/lifeLine');
+mongoose.connect(config.database);
 
 require('./config/passport')(passport);
 
@@ -63,7 +62,7 @@ app.use(function (err, req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-var io = require('socket.io').listen(app.listen(process.env.PORT));
+var io = require('socket.io').listen(app.listen(config.port));
 
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -85,9 +84,21 @@ io.on('connection', function(socket){
         //socket.broadcast.emit('chat message', data);
     });
 
-    socket.on('disconnect', function(){
+    socket.on('room', function(data) {
+      socket.join(data.room);
+      io.sockets.in(data.room).emit('message', data);
+    });
+
+    socket.on('offLine', function(data) {
+        //console.log(data);
+    });
+
+
+    socket.on('disconnect', function(data){
+      console.log(socket.userId);
       console.log('user disconnected');
     });
+
 
 
 });

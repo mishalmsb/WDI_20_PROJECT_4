@@ -2,8 +2,8 @@ angular
   .module('lifeLine')
   .controller('TopicsController', TopicsController);
 
-TopicsController.$inject = ['Topic', 'CurrentUser', '$state', '$http', 'CurrentTopic', '$stateParams', '$scope', '$mdDialog'];
-function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stateParams, $scope, $mdDialog){
+TopicsController.$inject = ['SocketsService', 'Topic', 'CurrentUser', '$state', '$http', 'CurrentTopic', '$stateParams', '$scope', '$mdDialog'];
+function TopicsController(SocketsService, Topic, CurrentUser, $state, $http, CurrentTopic, $stateParams, $scope, $mdDialog){
 
   var self              = this;
   self.all              = [];
@@ -19,30 +19,20 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   self.justForOwner     = justForOwner;
   self.test             = "test";
 
+  // $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
+  //     self.onlineUsers = newVal;
+  // } , true);
+
   self.sendMessege = function() {
-      self.currentUser  = CurrentUser.getUser();
-      var newMessage = {
-        user:     self.currentUser,
-        message:  self.chat
-      }
-      socket.emit('chat message', newMessage);
-      self.chat = "";
-  }
-  var socket = io();
-
-  socket.on('chat message' , function(message){
-
-    var chatEl = angular.element( document.querySelector( '#chatRoomText' ) );
-    if (self.currentUser) {
-      chatEl.append(message.user.local.username + " : " + message.message + '&#xA;');
+    self.currentUser  = CurrentUser.getUser();
+    var newMessage = {
+      user:     self.currentUser,
+      message:  self.chat,
+      room:     "room1"
     }
-
-    // var newTopicUser = angular.element( document.querySelector( '#newTopicUser' ) );
-    // if (message.user != self.currentUser._id ) {
-    //   self.helpingUser = message.user;
-    // }
-    // newTopicUser.val(self.helpingUser);
-  });
+    SocketsService.sendMessege(newMessage);
+    self.chat = "";
+  }
 
   self.openChat = function(ev, topicId)
   {
@@ -74,11 +64,11 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
 
   function closeTopic(topic) {
     self.topic.resolved = true;
-      // $http.patch('http://localhost:3000/api/topics/' + topic, {topic: self.topic})
-      //   .then(function(res){
-      //     // getUsers();
-      //     console.log(res);
-      // });
+      $http.patch('http://localhost:3000/api/topics/' + topic, {topic: self.topic})
+        .then(function(res){
+          // getUsers();
+          console.log(res);
+      });
   }
 
   function getTopics() {
@@ -106,10 +96,10 @@ function TopicsController(Topic, CurrentUser, $state, $http, CurrentTopic, $stat
   function createTopic() {
     self.currentUser  = CurrentUser.getUser();
     self.topic.user   = self.currentUser._id;
-    // $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
-    //     console.log(data);
-    //  });
-    //  $state.go('users')
+    $http.post("http://localhost:3000/api/topics/" , {topic: self.topic}, function(data) {
+        console.log(data);
+     });
+     $state.go('users')
   }
 
   function justForOwner(topicId) {

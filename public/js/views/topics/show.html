@@ -28,7 +28,6 @@
         <md-content class="md-padding">
             <br>
             <textarea rows="15" cols="75"  id="chatRoomText"> </textarea>
-
             <div flex-sm="150" flex-gt-sm="180" layout-sm="column">
                 <!-- <form name="contactForm" data-ng-submit="sendMail()"> -->
                 <form id="newChat" name="topics.newChatForm" ng-submit="topics.sendMessege()" novalidate >
@@ -37,9 +36,10 @@
                         <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="topics.chat">
                         <!-- <input ng-model="contactName" required> -->
                     </md-input-container>
-
-                    <md-button type="submit" class="md-primary"
-                               aria-label="Send Msg">Send</md-button>
+                    <!-- <md-button type="submit" class="md-primary"
+                               aria-label="Send Msg">Send</md-button> -->
+                     <md-button type="submit" class="md-primary"
+                                aria-label="Send Msg">Send</md-button>
                     <md-button class="md-primary"
                               aria-label="Send Msg">Close this topic</md-button>
                 </form>
