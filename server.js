@@ -23,7 +23,8 @@ var onlineUserId    = null;
 // var Topic = require('./models/topic');
 // Topic.collection.drop();
 
-mongoose.connect(config.database);
+// mongoose.connect(config.database);
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/project3');
 
 require('./config/passport')(passport);
 
@@ -79,6 +80,7 @@ io.on('connection', function(socket){
     })
 
     socket.on('chat message' , function(data) {
+
         io.emit('chat message' , data);
         //socket.broadcast.emit('chat message' , data);
         //socket.broadcast.emit('chat message', data);

@@ -29,7 +29,7 @@ function SocketsService(CurrentUser, $rootScope){
   });
 
   self.socket.on('chat message', function (data) {
-    console.log(data);
+    console.log(data.user._id);
     self.message = data;
     var chatEl = angular.element( document.querySelector( '#chatRoomText' ) );
     chatEl.append(data.user.local.username + " : " + data.message + '&#xA;');
