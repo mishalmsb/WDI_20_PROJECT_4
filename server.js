@@ -23,8 +23,8 @@ var onlineUserId    = null;
 // var Topic = require('./models/topic');
 // Topic.collection.drop();
 
-//mongoose.connect(config.database);
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/project3');
+mongoose.connect(config.database);
+// mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/lifeLine');
 
 require('./config/passport')(passport);
 
