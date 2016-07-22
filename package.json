@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "passport": "^0.2.0",
     "passport-local": "~0.1.6",
     "socket.io": "^1.4.8",
-    "validator": "^5.1.0"
+    "validator": "^5.1.0",
+    "bower": "^1.7.9"
   }
 }
