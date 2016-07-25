@@ -2,7 +2,7 @@ var express = require('express');
 var router  = express.Router();
 
 var usersController = require('../controllers/usersController');
-var topicsController = require('../controllers/topicsController');
+var topicsController = require('../controllers/videosController');
 var authenticationsController = require('../controllers/authenticationsController');
 
 router.post('/login', authenticationsController.login);
@@ -19,13 +19,13 @@ router.route('/users/:id')
   .patch(usersController.usersUpdate)
   .delete(usersController.usersDelete);
 
-router.route('/topics')
-  .get(topicsController.topicsIndex)
-  .post(topicsController.topicCreate);
+// router.route('/videos')
+//   .get(videosController.topicsIndex)
+//   .post(videosController.topicCreate);
 
-router.route('/topics/:id')
-  .get(topicsController.topicsShow)
-  .patch(topicsController.topicsUpdate);
+// router.route('/videos/:id')
+//   .get(videosController.topicsShow)
+//   .patch(videosController.topicsUpdate);
   
 // router.route('/users/:id/topics')
 //   .get(topicsController.topicsIndex)

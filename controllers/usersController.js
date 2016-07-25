@@ -14,18 +14,6 @@ function usersShow(req, res){
   });
 }
 
-// function usersShow(req, res) {
-//
-//   var id = req.params.id;
-//
-//   User.findById({ _id: id }).populate("locations").exec(function(err, user) {
-//     if (err) return res.status(500).send(err);
-//     if (!user) return res.status(404).send(err);
-//
-//     res.status(200).send(user: user);
-//   })
-// }
-
 function usersUpdate(req, res){
   User.findById(req.params.id,  function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong!"});

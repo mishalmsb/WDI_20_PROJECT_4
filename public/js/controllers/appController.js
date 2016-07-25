@@ -2,7 +2,10 @@ var app = angular.module('lifeLine');
 
 app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$state', 'CurrentUser', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $state, CurrentUser){
 
-  var self = this
+
+
+  var self = this;
+
   self.currentUser = '';
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();

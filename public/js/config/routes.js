@@ -33,25 +33,25 @@ angular
           });
         }
       })
-      .state('topics', {
-        url: "/topics",
-        templateUrl: "./js/views/topics/index.html",
-        controller: "TopicsController as topics"
-      })
-      .state('topic', {
-        url: "/topics/:id",
-        templateUrl: "./js/views/topics/show.html",
-        controller: function($scope, $stateParams, Topic) {
-          Topic.get({ id: $stateParams.id }, function(res){
-            $scope.$parent.topics.topic = res.topic;
-            // console.log($scope.$parent.topics.topic);
-          });
-        }
-      })
-      .state('newTopic', {
-        url: "/topics",
-        templateUrl: "./js/views/topics/new.html"
-      })
+      // .state('topics', {
+      //   url: "/topics",
+      //   templateUrl: "./js/views/topics/index.html",
+      //   controller: "TopicsController as topics"
+      // })
+      // .state('topic', {
+      //   url: "/topics/:id",
+      //   templateUrl: "./js/views/topics/show.html",
+      //   controller: function($scope, $stateParams, Topic) {
+      //     Topic.get({ id: $stateParams.id }, function(res){
+      //       $scope.$parent.topics.topic = res.topic;
+      //       // console.log($scope.$parent.topics.topic);
+      //     });
+      //   }
+      // })
+      // .state('newTopic', {
+      //   url: "/topics",
+      //   templateUrl: "./js/views/topics/new.html"
+      // })
       .state('chat', {
         url: "/chat",
         templateUrl: "./js/views/chat/chat.html"

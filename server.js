@@ -20,11 +20,8 @@ var onlineUserId    = null;
 // var User = require('./models/user');
 // User.collection.drop();
 //
-// var Topic = require('./models/topic');
-// Topic.collection.drop();
 
 mongoose.connect(config.database);
-// mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/lifeLine');
 
 require('./config/passport')(passport);
 
@@ -66,7 +63,7 @@ app.use("/api", routes);
 var io = require('socket.io').listen(app.listen(config.port));
 
 io.on('connection', function(socket){
-    console.log('a user connected');
+    //console.log('a user connected');
 
     socket.on('onlineUser', function(user) {
       if (user) {
@@ -97,14 +94,13 @@ io.on('connection', function(socket){
 
 
     socket.on('disconnect', function(data){
-      console.log(socket.userId);
+      //console.log(socket.userId);
       var index = onlineUsers.indexOf(socket.userId);
       if (index > -1) {
           onlineUsers.splice(index, 1);
       }
-      console.log(onlineUsers);
       io.sockets.emit('onlineUser' , onlineUsers);
-      console.log('user disconnected');
+      //console.log('user disconnected');
     });
 
 

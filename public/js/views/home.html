@@ -1,124 +1,20 @@
-<h1>{{ users.currentUser.local.fullname }}</h1>
+<section ng-controller="VideosController as videos">
+  <h1>{{ videos.currentUser.local.fullname }}</h1>
 
-
-<!-- <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-lg="8" md-cols-gt-lg="12">
-  <md-grid-tile>d</md-grid-tile>
-</md-grid-list> -->
-
-<div class='md-padding' layout="row" layout-wrap layout-align="center center">
-  <md-card style="width: 320px; height: 350px;">
-            <!-- <md-card style="width: 350px;" ng-repeat="user in users"> -->
-            <img src="https://2.bp.blogspot.com/-zV7dbOmDjNM/V4LykLHyz0I/AAAAAAAABCQ/xXwMXDdkh_scJxmRcWTbDqjYY8S3ucsSQCLcB/s640/Football_Soccer_Portugal_European_Champion.JPG" alt="" />
-      <md-card-content>
-        <h2></h2>
-        <p></p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <!-- <md-button>Save</md-button>
-        <md-button>View</md-button> -->
+  {{ videos.all }}
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-md-offset-0 display"  >
+              <iframe width="100%" height="100%" ng-src="{{videos.currentVideo}}" frameborder="0 " allowfullscreen></iframe>
+          </div>
+          <div class="col-md-4 col-md-offset-1 display">
+            <ul ng-repeat="src in videos.all">
+              <li> {{ src }} </li>
+              <button ng-click="videos.changeVideo('FGBhQbmPwH8')""></button>
+            </ul>
+          </div>
       </div>
-  </md-card>
-  <md-card style="width: 320px; height: 350px;">
-            <!-- <md-card style="width: 350px;" ng-repeat="user in users"> -->
-            <img src="http://www.denovahomes.com/blog/wp-content/uploads/2014/04/to-do-list.png" alt="" />
-      <md-card-content>
-        <h2></h2>
-        <p></p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <!-- <md-button>Save</md-button>
-        <md-button>View</md-button> -->
-      </div>
-  </md-card>
-  <md-card style="width: 320px; height: 350px;">
-            <!-- <md-card style="width: 350px;" ng-repeat="user in users"> -->
-            <img src="" alt="" />
-      <md-card-content>
-        <h2></h2>
-        <p></p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <!-- <md-button>Save</md-button>
-        <md-button>View</md-button> -->
-      </div>
-  </md-card>
-  <md-card style="width: 320px; height: 350px;">
-            <!-- <md-card style="width: 350px;" ng-repeat="user in users"> -->
-            <br>  <br>  <br>
-            <!-- <iframe width="320" height="245" src="https://www.youtube.com/embed/4XpDdIISlYo" frameborder="0" allowfullscreen></iframe> -->
-      <md-card-content>
-        <h2></h2>
-        <p></p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <!-- <md-button>Save</md-button>
-        <md-button>View</md-button> -->
-      </div>
-  </md-card>
-  <md-card style="width: 320px; height: 350px;">
-            <!-- <md-card style="width: 350px;" ng-repeat="user in users"> -->
-            <img src="http://www.freeiconspng.com/uploads/add-icon--icon-search-engine-1.png" alt="" />
-      <md-card-content>
-        <h2></h2>
-        <p></p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <!-- <md-button>Save</md-button>
-        <md-button>View</md-button> -->
-      </div>
-  </md-card>
-
-</div>
-
-<!-- <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-<md-toolbar class="md-tall md-hue-2">
-  <span flex></span>
-  <div layout="column" class="md-toolbar-tools-bottom inset">
-    <user-avatar></user-avatar>
-    <span></span>
-    <div>Mishal</div>
-    <div>Mishal</div>
   </div>
-</md-toolbar>
-<md-list>
-<md-item ng-repeat="item in menu">
-  <a href="#" ui-sref="users">
-    <md-item-content md-ink-ripple layout="row" layout-align="start center">
-      <div class="inset">
-        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-      </div>
-      <div class="inset">{{item.title}}
-      </div>
-    </md-item-content>
-  </a>
-</md-item>
-<md-divider></md-divider>
-
-</md-list>
-</md-sidenav>
-<div layout="column" class="relative" layout-fill role="main">
-<md-toolbar ng-show="!showSearch">
-  <div class="md-toolbar-tools">
-    <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
-      <ng-md-icon icon="menu"></ng-md-icon>
-    </md-button>
-    <h3>
-      LifeLine
-    </h3>
-    <span flex></span>
-  </div>
-</md-toolbar>
-<div>
-  <section ng-controller="UsersController as users">
-  <section ng-controller="TopicsController as topics">
-  <section ng-controller="ChatController as chats">
+</section>
 
 
-  </section>
-  </section>
-  </section>
-
-</div>
-</div> -->
-
-  <!-- <main class="md-fab md-fab-bottom-right"  ui-view></main> -->

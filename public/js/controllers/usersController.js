@@ -2,8 +2,8 @@ angular
   .module('lifeLine')
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['Topic', 'User', 'CurrentUser', '$state' , 'SocketsService' , '$scope', '$window', '$mdDialog'];
-function UsersController(Topic, User, CurrentUser, $state , SocketsService , $scope, $window, $mdDialog){
+UsersController.$inject = ['User', 'CurrentUser', '$state' , 'SocketsService' , '$scope', '$window', '$mdDialog'];
+function UsersController(User, CurrentUser, $state , SocketsService , $scope, $window, $mdDialog){
 
   var self = this;
 
@@ -16,8 +16,8 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
+  self.chat          = "";
   self.onlineUsers   = SocketsService.onlineUsers;
-  // self.getTopics        = getTopics;
   self.allTopics        = [];
   var counter = 0;
   self.socket = io();
@@ -26,6 +26,16 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
       self.onlineUsers = newVal;
   } , true);
 
+  self.sendMessege = function() {
+    self.currentUser  = CurrentUser.getUser();
+    var newMessage = {
+      user:     self.currentUser,
+      message:  self.chat,
+      room:     "room1"
+    };
+    SocketsService.sendMessege(newMessage);
+    self.chat = "";
+  }
 
   function getUsers() {
     User.query(function(data){
@@ -41,6 +51,7 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
     }
     self.currentUser = CurrentUser.getUser();
     self.socket.emit('onlineUser' , self.currentUser);
+    console.log(self.currentUser);
   }
 
   function handleError(e) {

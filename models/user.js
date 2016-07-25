@@ -10,9 +10,7 @@ var userSchema = mongoose.Schema({
     email:        { type: String, unique: true, required: true },
     passwordHash: { type: String, required: true }
   },
-  topics:         [{ type: mongoose.Schema.ObjectId, ref: 'Topic' }],
-  online:         { type: Boolean, default: true }
-  // elements:       [{ type: mongoose.Schema.ObjectId, ref: 'Element' }],
+  videos:         [{ type: mongoose.Schema.ObjectId, ref: 'Video' }],
 });
 
 /* Validate password */

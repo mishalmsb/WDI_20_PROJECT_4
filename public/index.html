@@ -9,7 +9,7 @@
 
   <!-- Angular Material CSS Dependencies -->
   <!-- <link rel="stylesheet" href="/angular-material/angular-material.min.css"> -->
-
+ 
   <!-- Angular Material js Dependencies -->
   <!-- <script src="/angular/angular.min.js"></script> -->
 
@@ -52,12 +52,11 @@
   <script src="./js/filters/online.js"></script>
   <script src="./js/controllers/appController.js"></script>
   <script src="./js/controllers/usersController.js"></script>
-  <script src="./js/controllers/topicsController.js"></script>
   <script src="./js/controllers/chatController.js"></script>
+  <script src="./js/controllers/videosController.js"></script>
   <script src="js/factories/authInterceptor.js"></script>
   <script src="js/services/tokenService.js"></script>
   <script src="js/services/currentUser.js"></script>
-  <script src="js/services/currentTopic.js"></script>
   <script src="js/services/socketsService.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -118,11 +117,11 @@
   </md-toolbar>
   <div>
     <section ng-controller="UsersController as users">
-    <section ng-controller="TopicsController as topics">
-    <section ng-controller="ChatController as chats">
+    <!-- <section ng-controller="TopicsController as topics"> -->
+    <!-- <section ng-controller="ChatController as chats"> -->
       <main class="md-fab md-fab-bottom-right"  ui-view></main>
-    </section>
-    </section>
+    <!-- </section> -->
+    <!-- </section> -->
     </section>
   </div>
 </div>

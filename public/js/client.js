@@ -5,3 +5,9 @@ angular
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
+  .config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'self',
+      'https://www.youtube.com/**'
+    ]);
+  });
