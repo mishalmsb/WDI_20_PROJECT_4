@@ -48,10 +48,11 @@ function UsersController(User, CurrentUser, $state , SocketsService , $scope, $w
     if (token) {
       self.getUsers();
       $state.go('home')
+    } else {
+      $state.go('login')
     }
     self.currentUser = CurrentUser.getUser();
     self.socket.emit('onlineUser' , self.currentUser);
-    console.log(self.currentUser);
   }
 
   function handleError(e) {

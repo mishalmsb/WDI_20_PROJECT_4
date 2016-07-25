@@ -2,24 +2,25 @@ var app = angular.module('lifeLine');
 
 app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$state', 'CurrentUser', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $state, CurrentUser){
 
-
-
   var self = this;
 
   self.currentUser = '';
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
+
   $scope.menu = [
     {
       link : 'home',
       title: 'Profile',
-      icon: 'person'
+      icon: 'person',
+      video: 'true'
     },
     {
       link : 'chat',
       title: 'Chat Overflow',
-      icon: 'message'
+      icon: 'message'.
+      video: 'false'
     }
   ];
   $scope.alert = '';
@@ -29,14 +30,23 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     if (self.currentUser) {
       return self.currentUser.local.fullname;
     }
-
-
   }
+
   $scope.checkLoggedIn = function() {
     self.currentUser = CurrentUser.getUser();
+    if (!self.currentUser) {
+      $state.go('login');
+    } 
+
     return !!self.currentUser;
   }
 
+  $scope.homePage = function() {
+
+    return !!self.currentUser;
+
+  }
+  
 
 }]);
 

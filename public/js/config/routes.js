@@ -8,7 +8,11 @@ angular
       .state('login', {
         url: "/",
         templateUrl: "./js/views/authentications/login.html",
-
+        controller: function(CurrentUser,$state) {
+          if (CurrentUser.getUser()) {
+            $state.go('home');
+          };
+        }
       })
       .state('home', {
         url: "/home",
