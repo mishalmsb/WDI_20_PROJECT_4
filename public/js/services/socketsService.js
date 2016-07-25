@@ -29,10 +29,18 @@ function SocketsService(CurrentUser, $rootScope){
   });
 
   self.socket.on('chat message', function (data) {
-    console.log(data.user._id);
     self.message = data;
-    var chatEl = angular.element( document.querySelector( '#chatRoomText' ) );
-    chatEl.append(data.user.local.username + " : " + data.message + '&#xA;');
+    // chatName
+    // var chatEl = angular.element( document.querySelector( '#chatMsg' ) );
+    // chatEl.append(data.user.local.username + " : " + data.message + '&#xA;');
+
+    var chatEl = angular.element( document.querySelector( '#chatMsg' ) );
+
+    var newMsg = "<h5 class='media-heading'>" + data.user.local.username + 
+                 "</h5>" + "<small class='col-lg-10'>" + data.message + "</small> <br>"  
+
+    chatEl.append(newMsg); 
+
   });
 
   self.socket.on('message', function(data) {

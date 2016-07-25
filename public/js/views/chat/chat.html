@@ -1,15 +1,60 @@
-<!-- <section>
-  <h2>Chat</h2>
-  <div id="chatRoom">
-
-  </div>
-  <form id="newChat" name="chats.newChatForm" ng-submit="chats.sendMessege()" novalidate>
-
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="title" ng-model="chats.chat">
+<!-- <div flex layout="row" layout-align="center top" class="chat">
+    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="150" flex-gt-lg="250" class="md-whiteframe-z2">
+        <md-content class="md-padding">
+            <br>
+            <textarea rows="15" cols="75"  id="chatRoomText"> </textarea>
+            <div flex-sm="150" flex-gt-sm="180" layout-sm="column">
+                <form id="newChat" name="topics.newChatForm" ng-submit="topics.sendMessege()" novalidate >
+                    <md-input-container>
+                        <label>Type message here:</label>
+                        <input type="text" class="form-control" id="title" placeholder="Type message here" ng-model="topics.chat">
+                    </md-input-container>
+                     <md-button type="submit" class="md-primary"
+                                aria-label="Send Msg">Send</md-button>
+                    <md-button class="md-primary"
+                              aria-label="Send Msg">Close this topic</md-button>
+                </form>
+            </div>
+        </md-content>
     </div>
+</div> -->
 
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</section> -->
+<div class="container">
+    <div class="row">
+        <div class="conversation-wrap col-lg-3">
+            <div class="media conversation" ng-repeat="user in topics.users | online:users.onlineUsers">
+                <a class="pull-left" href="#">
+                    <user-avatar></user-avatar> 
+                    <!-- <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 50px; height: 50px;" src="img"> -->
+                </a>
+                <div class="media-body">
+                    <h5 class="media-heading"> {{user.local.username}} </h5>
+                </div>
+            </div>
+        </div>
+        <div class="message-wrap col-lg-8">
+            <div class="msg-wrap">
+
+                <div class="media msg ">
+                   <!--  <a class="pull-left" href="#">
+                        <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
+                    </a> -->
+                    <div class="media-body" id="chatMsg">
+                        <!-- <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small> -->
+                       <!--  <h5 class="media-heading"> name </h5>
+                        <small class="col-lg-10"> msg </small> -->
+                    </div>
+                </div>
+            </div>
+            <form id="newChat" name="topics.newChatForm" ng-submit="chats.sendMessege()" novalidate >
+              <div class="send-wrap ">
+                  <textarea class="form-control send-message" rows="3" placeholder="type messege..." ng-model="chats.chat"></textarea>
+              </div>
+              <div class="btn-panel">
+                  <md-button type="submit" class="md-primary btn" aria-label="Send Msg">Send</md-button>
+<!--                   <a href="" class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"><i class="fa fa-plus"></i> Send Message</a> -->
+              </div>
+            </form>
+        </div>
+    </div>
+</div>

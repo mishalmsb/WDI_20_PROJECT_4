@@ -46,7 +46,6 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
   function handleError(e) {
     self.error = e.data.message;
     self.currentUser = CurrentUser.getUser();
-    // self.socket.emit('onlineUser' , self.currentUser);
   }
 
   function register() {
@@ -66,13 +65,11 @@ function UsersController(Topic, User, CurrentUser, $state , SocketsService , $sc
 
   function checkLoggedIn() {
     self.currentUser = CurrentUser.getUser();
-    //socket.emit('onlineUser' , self.currentUser);
     return !!self.currentUser;
   }
 
   if (checkLoggedIn()) {
     self.getUsers();
-    // self.getTopics();
   }
 
   return self;

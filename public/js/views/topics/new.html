@@ -13,11 +13,11 @@
                 <!-- <form name="contactForm" data-ng-submit="sendMail()"> -->
                 <form id="newTopic" name="topics.newTopicForm" ng-submit="topics.createTopic()" novalidate>
                     <md-input-container>
-                        <label>Title:</label>
                         <input type="text" class="form-control" id="title" placeholder="title" ng-model="topics.topic.title">
-                        <!-- <input ng-model="contactName" required> -->
                     </md-input-container>
-
+                    <md-input-container>
+                        <textarea class="form-control" id="question" ng-model="topics.topic.question" md-maxlength="50" rows="5" placeholder="question"></textarea>
+                    </md-input-container>
                     <md-button type="submit" class="md-primary"
                                aria-label="Save Project">Save</md-button>
                 </form>

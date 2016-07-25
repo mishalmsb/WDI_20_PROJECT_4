@@ -98,6 +98,12 @@ io.on('connection', function(socket){
 
     socket.on('disconnect', function(data){
       console.log(socket.userId);
+      var index = onlineUsers.indexOf(socket.userId);
+      if (index > -1) {
+          onlineUsers.splice(index, 1);
+      }
+      console.log(onlineUsers);
+      io.sockets.emit('onlineUser' , onlineUsers);
       console.log('user disconnected');
     });
 

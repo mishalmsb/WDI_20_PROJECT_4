@@ -1,10 +1,9 @@
-  <div layout="column" class="relative" layout-fill role="main">
+  <section ng-controller="TopicsController as topics">
+
+    <div layout="column" class="relative" layout-fill role="main">
     <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openForm($event)">
       <ng-md-icon icon="add"></ng-md-icon>
     </md-button>
-    <!-- <md-button class="md-raised md-primary" data-ng-click="vm.openForm($event)">
-      OPEN DIALOG WIH FORM
-    </md-button> -->
     <md-toolbar ng-show="!showSearch">
       <div class="md-toolbar-tools">
         <span flex></span>
@@ -15,7 +14,7 @@
       </div>
       <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
         <md-tab id="tab1" aria-controls="tab1-content">Online</md-tab>
-        <md-tab id="tab2" aria-controls="tab2-content">All</md-tab>
+        <md-tab id="tab2" aria-controls="tab2-content">Closed</md-tab>
       </md-tabs>
     </md-toolbar>
     <md-toolbar class="md-hue-1" ng-show="showSearch">
@@ -53,14 +52,17 @@
                 <md-card flex-gt-sm="90" flex-gt-md="80">
                   <md-card-content>
                     <h2> Chat Overflow </h2>
-                    <md-list ng-repeat="user in users.all | online:users.onlineUsers">
-                      <md-item ng-repeat="topic in user.topics | filter:search">
+
+                    <!-- <md-list ng-repeat="user in users.all | online:users.onlineUsers"> -->
+                    <md-list ng-repeat="user in topics.users | online:users.onlineUsers">
+
+                      <md-item ng-repeat="topic in user.topics">
                         <md-item-content>
                           <div class="md-tile-left inset" hide-sm>
                               <user-avatar></user-avatar>
                           </div>
                           <div class="md-tile-content">
-                            <h3> Topic   {{topic.title}}</h3>
+                            <h3 ng-model="topic.title"> Topic   {{topic.title}}</h3>
                             <h4> User    {{user.local.username}} </h4>
                             <p>
                               {{topic.title}}
@@ -69,20 +71,14 @@
                             <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openChat($event, topic._id)">
                               <ng-md-icon icon="chat"> </ng-md-icon>
                             </md-button>
-                            <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="topics.openForm($event)">
-                              <ng-md-icon icon="add"></ng-md-icon>
-                            </md-button> -->
                           </div>
                         </md-item-content>
                         <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
                         <md-divider hide-gt-sm ng-if="!$last"></md-divider>
                       </md-item>
+
+
                       <md-divider></md-divider>
-                      <!-- <md-item layout class="inset">
-                          <md-button layout layout-align="start center" flex class="md-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg> More
-                          </md-button>
-                      </md-item> -->
                     </md-list>
                   </md-card-content>
                 </md-card>
@@ -109,3 +105,4 @@
       </ui-view>
     </md-content>
   </div>
+</section>

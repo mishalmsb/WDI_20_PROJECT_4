@@ -14,7 +14,7 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
       icon: 'person'
     },
     {
-      link : 'users',
+      link : 'chat',
       title: 'Chat Overflow',
       icon: 'message'
     }
@@ -33,6 +33,8 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     self.currentUser = CurrentUser.getUser();
     return !!self.currentUser;
   }
+
+
 }]);
 
 app.directive('userAvatar', function() {
