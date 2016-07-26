@@ -17,7 +17,7 @@ angular
       .state('home', {
         url: "/home",
         templateUrl: "./js/views/home.html",
-        controller: "UsersController as users",
+        controller: "UsersController as users", 
       })
       .state('register', {
         url: "/register",
@@ -58,7 +58,8 @@ angular
       // })
       .state('chat', {
         url: "/chat",
-        templateUrl: "./js/views/chat/chat.html"
+        templateUrl: "./js/views/chat/chat.html",
+        controller: "ChatController as chat"
       });
 
     $urlRouterProvider.otherwise("/");

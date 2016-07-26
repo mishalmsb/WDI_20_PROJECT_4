@@ -1,7 +1,7 @@
 /*HOME PAGE*/
 
 .display {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   height: 300px;
 }
 
@@ -186,12 +186,32 @@ body::-webkit-scrollbar {
   max-width:  90%;
   width: 400px
 }
-
+.registerBox {
+  margin-top: 30px;
+  max-width:  90%;
+  width: 500px;
+  height: 400px;
+}
+.moveTop {
+  margin-top: -30px;
+}
+.moveTop2 {
+  margin-top: -50px;
+}
 .stretch input  {
-  width: 100%
+  width: 100%;
 }
 
+.logTool {
+  width: 175px;
+  height: 30px;
+  margin: -65px auto;
+  background-color: transparent;
+}
 
+.logTool ul {
+  margin-top: 8px;
+}
 #logo-container{
   margin: auto;
   margin-bottom: 10px;

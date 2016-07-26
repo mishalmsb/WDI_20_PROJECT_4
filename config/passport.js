@@ -27,7 +27,7 @@ module.exports = function(passport) {
 
       newUser.save(function(err, user) {
         // Error found
-        if (err) return done(err, false, { message: "Something went wrong." });
+        if (err) return done(err, false, { message: err });
 
         // New user created
         return done(null, user);

@@ -1,25 +1,26 @@
 var app = angular.module('lifeLine');
 
-app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$state', 'CurrentUser', function($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $state, CurrentUser){
+app.controller('AppCtrl', ['$location', '$window', '$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog', '$state', 'CurrentUser', function($location, $window, $scope, $mdBottomSheet, $mdSidenav, $mdDialog, $state, CurrentUser){
 
-  var self = this;
+  var self      = this;
 
   self.currentUser = '';
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
 
+ 
   $scope.menu = [
     {
       link : 'home',
-      title: 'Profile',
+      title: 'Desktop',
       icon: 'person',
       video: 'true'
     },
     {
       link : 'chat',
       title: 'Chat Overflow',
-      icon: 'message'.
+      icon: 'message',
       video: 'false'
     }
   ];
@@ -29,6 +30,14 @@ app.controller('AppCtrl', ['$scope', '$mdBottomSheet','$mdSidenav', '$mdDialog',
     self.currentUser = CurrentUser.getUser();
     if (self.currentUser) {
       return self.currentUser.local.fullname;
+    }
+  }
+
+  $scope.checkPage = function() {
+    // console.log($location.path());
+    if ($location.path() == "/home") {
+      return true;
+      console.log("chat")
     }
   }
 

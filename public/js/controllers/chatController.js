@@ -6,34 +6,39 @@ ChatController.$inject = ['SocketsService', 'CurrentUser', '$state', '$http', '$
 function ChatController(SocketsService, CurrentUser, $state, $http, $element, $mdDialog, $scope){
 
   var self          = this;
-  self.currentUser  = null;
-  self.chat         = "";
-  self.currentUser  = CurrentUser.getUser();
-  self.helpingUser  = null;
-  self.onlineUsers   = SocketsService.onlineUsers;
 
-  $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
-      self.onlineUsers = newVal;
-  } , true);
+  // $rootScope.$broadcast("hideVideo");
 
-  self.sendMessege = function() {
-    self.currentUser  = CurrentUser.getUser();
-    var newMessage = {
-      user:     self.currentUser,
-      message:  self.chat,
-      room:     "room1"
-    };
-    SocketsService.sendMessege(newMessage);
-    self.chat = "";
-  }
+  // $scope.$on('$stateChangeStart', function(event, toState) {
+  //   return $rootScope.$broadcast("showVideo");
+  // });
 
-  angular.element(document).ready(function () {
+  // self.currentUser  = null;
+  // self.chat         = "";
+  // self.currentUser  = CurrentUser.getUser();
+  // self.helpingUser  = null;
+  // self.onlineUsers   = SocketsService.onlineUsers;
 
-    console.log(SocketsService.onlineUsers);
+  // $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
+  //     self.onlineUsers = newVal;
+  // } , true);
 
-  });
+  // self.sendMessege = function() {
+  //   self.currentUser  = CurrentUser.getUser();
+  //   var newMessage = {
+  //     user:     self.currentUser,
+  //     message:  self.chat,
+  //     room:     "room1"
+  //   };
+  //   SocketsService.sendMessege(newMessage);
+  //   self.chat = "";
+  // }
 
-  
+  // angular.element(document).ready(function () {
+  //   console.log(SocketsService.onlineUsers);
+  // });
 
-  return self;
+  // return self;
+
+
 }

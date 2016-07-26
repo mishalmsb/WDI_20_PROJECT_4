@@ -84,5 +84,6 @@ function UsersController(User, CurrentUser, $state , SocketsService , $scope, $w
     self.getUsers();
   }
 
+  
   return self;
 }

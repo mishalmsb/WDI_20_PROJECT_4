@@ -2,8 +2,8 @@ angular
   .module('lifeLine')
   .controller('VideosController', VideosController);
 
-VideosController.$inject = ['User', 'CurrentUser'];
-function VideosController(User, CurrentUser){
+VideosController.$inject = ['User', 'CurrentUser', '$scope'];
+function VideosController(User, CurrentUser, $scope){
 
   var self          = this;
   self.all          = [ 
@@ -14,6 +14,8 @@ function VideosController(User, CurrentUser){
   self.currentVideo = 'https://www.youtube.com/embed/NF-kLy44Hls';
   self.currentUser  = CurrentUser.getUser();
   self.newMusic     = {};
+  self.display      = false;
+
   self.changeVideo = function(src) {
     self.currentVideo = 'https://www.youtube.com/embed/' + src;
   };
@@ -27,5 +29,14 @@ function VideosController(User, CurrentUser){
     self.all.push(self.newMusic);
     self.newMusic={};
   }
+
+  // $rootScope.$on("hideVideo", function(evt,data){ 
+  //   self.display = false;  
+  // });
+
+  // $rootScope.$on("showVideo", function(evt,data){ 
+  //   self.display = true;  
+  // });
+
   return self;
 }
