@@ -17,11 +17,11 @@
 
   <!-- Angular Material js Dependencies -->
   <script src="/angular-material/angular-material.min.js"></script>
-  <!-- <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script> -->
   <script src="/angular-material-icons/angular-material-icons.min.js"></script>
 
   <!-- Custom CSS Dependencies -->
   <link rel="stylesheet" href="./css/style.css">
+  <!-- <link rel="stylesheet" href="./css/musicBox.css"> -->
 
   <!-- socket Dependencies -->
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -38,19 +38,21 @@
   <script src="./js/models/user.js"></script>
   <script src="./js/models/topic.js"></script>
   <script src="./js/config/routes.js"></script>
+  <script src="./js/config/themes.js"></script>
+  <script src="./js/directives/avatar.js"></script>
   <script src="./js/filters/online.js"></script>
   <script src="./js/controllers/appController.js"></script>
   <script src="./js/controllers/usersController.js"></script>
   <script src="./js/controllers/chatController.js"></script>
   <script src="./js/controllers/videosController.js"></script>
-  <script src="js/factories/authInterceptor.js"></script>
-  <script src="js/services/tokenService.js"></script>
-  <script src="js/services/currentUser.js"></script>
-  <script src="js/services/socketsService.js"></script>
+  <script src="./js/factories/authInterceptor.js"></script>
+  <script src="./js/services/tokenService.js"></script>
+  <script src="./js/services/currentUser.js"></script>
+  <script src="./js/services/socketsService.js"></script>
 
 
 </head>
-<body layout="row" ng-controller="AppCtrl">
+<body layout="row" ng-controller="AppCtrl" class="body">
 
   <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
   md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-show="checkLoggedIn()">
@@ -76,8 +78,8 @@
     </a>
   </md-item>
   <md-divider></md-divider>
-  <md-item ng-controller="UsersController as users">
-    <a href="#" ui-sref="login" ng-click="users.logout()">
+  <md-item>
+    <a href="#" ui-sref="login" ng-click="logout()">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
         <div class="inset">
           <ng-md-icon icon="login"></ng-md-icon>
@@ -103,40 +105,67 @@
     </div>
   </md-toolbar>
   <div>
-
+                                      <!-- FGBhQbmPwH8 -->
   <!-- VIDEOS -->
-    <!-- <div class="videoBox display" ng-controller="VideosController as videos" ng-show="videos.display"> -->
-    <div class="videoBox display" ng-controller="VideosController as videos" ng-show="checkPage()">
-      <h1>{{ currentUser.local.fullname }}</h1>
-      <div class="container">
-          <div class="row">
-              <div class="col-md-6 col-md-offset-0 display">
-                  <iframe width="100%" height="100%" ng-src="{{videos.currentVideo}}" frameborder="0" allowfullscreen></iframe>
-              </div>
-              <div class="col-md-4 col-md-offset-1 display">
-                <ul ng-repeat="src in videos.all track by $index">
-                  <li> 
-                    <button ng-click="videos.changeVideo(src.youtubeId)">{{src.title}}</button>
-                  </li>
-                </ul>
-              </div>
+<div class="videoBox" ng-controller="VideosController as videos" ng-show="checkPage()">
+  <div id="container">
+    <div  class="searchRow">
+      <form id="search" ng-submit="videos.searchVideo()" novalidate>
+        <input id="submit" type="image" src="./assets/images/search.png" alt="Search">
+        <input id="query" type="text" placeholder="YouTube Search" ng-model="videos.searchName">
+      </form>
+    </div>
+
+    <div>
+      <div class="col-md-6 nopadding">
+
+        <iframe width="100%" class="youtube" ng-src="{{videos.currentVideo}}" frameborder="0" allowfullscreen></iframe>
+        <div class="myVideos">
+          <!-- <div class="myVideosList" ng-repeat="src in videos.all track by $index">
+
+            <p class="video-title">
+              {{src.title}}
+            </p>
+
+          </div> -->
+          <div class="video ng-scope" ng-repeat="src in  videos.all track by $index">
+            <img class="video-image" ng-src="{{src.thumbnails}}">
+            <p class="video-title ng-binding">{{src.title}}</p>
+            <input type="button" class="video-buttons" value="PLAY" ng-click="videos.playVideo(src.youtubeId)">
+            <input type="button" class="video-buttons" value="DEL" ng-click="videos.deleteVideo($index)">
           </div>
-          <form id="login" name="users.loginForm" ng-submit="videos.addVideo()" novalidate>
-              <!-- <label>https://www.youtube.com/watch?v=NF-kLy44Hls</label> -->
-              <input type="text" placeholder="Music Title" ng-model="videos.newMusic.title" required>
-              <input type="text" placeholder="Music URL" ng-model="videos.newMusic.youtubeId" required>
-              <md-button type="submit" class="md-raised md-primary">Submit</md-button>
-          </form>
+          <!-- <ul >
+            <li>
+              {{src.title}}
+              <md-button class="md-raised md-primary" ng-click="videos.playVideo(src.youtubeId)">Play</md-button>
+              <md-button class="md-raised md-primary" ng-click="videos.deleteVideo($index)">Delete</md-button>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+      <div class="col-md-6 vodeoSearchList nopadding">
+        <!-- <div ng-repeat="src in videos.youTubeVideos.items track by $index">
+                <img src={{src.snippet.thumbnails.default.url}}>
+                {{src.snippet.title}}
+                <button ng-click="videos.playVideo(src.id.videoId)">Play</button>
+                <button ng-click="videos.addVideo(src)">Add</button> -->
+          <div class="video ng-scope" ng-repeat="src in videos.youTubeVideos.items track by $index" ng-click="queue(video.id, video.title)">
+            <img class="video-image" ng-src="{{src.snippet.thumbnails.default.url}}">
+            <p class="video-title ng-binding">{{src.snippet.title}}</p>
+            <input type="button" class="video-buttons" value="PLAY" ng-click="videos.playVideo(src.id.videoId)">
+            <input type="button" class="video-buttons" value="ADD" ng-click="videos.addVideo(src)">
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
   <!-- VIDEOS -->
 
     <section ng-controller="UsersController as users">
-    <!-- <section ng-controller="ChatController as chats"> -->
-      <main class="md-fab md-fab-bottom-right"  ui-view></main>
-    <!-- </section> -->
-
+      <main class="md-fab md-fab-bottom-right body"  ui-view></main>
     </section>
+
   </div>
 </div>
 

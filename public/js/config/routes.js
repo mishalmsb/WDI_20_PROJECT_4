@@ -8,7 +8,8 @@ angular
       .state('login', {
         url: "/",
         templateUrl: "./js/views/authentications/login.html",
-        controller: function(CurrentUser,$state) {
+        // controller: "usersController as users",
+        onEnter: function(CurrentUser,$state) {
           if (CurrentUser.getUser()) {
             $state.go('home');
           };
@@ -17,16 +18,17 @@ angular
       .state('home', {
         url: "/home",
         templateUrl: "./js/views/home.html",
-        controller: "UsersController as users", 
-      })
-      .state('register', {
-        url: "/register",
-        templateUrl: "./js/views/authentications/register.html"
+        // controller: "usersController as users",
+        onEnter: function(CurrentUser,$state){
+          if (!CurrentUser.getUser()) {
+            $state.go('login');
+          };
+        },
       })
       .state('users', {
         url: "/users",
         templateUrl: "./js/views/users/index.html",
-        controller: "UsersController as users"
+        controller: "usersController as users"
       })
       .state('user', {
         url: "/users/:id",
@@ -37,6 +39,16 @@ angular
           });
         }
       })
+      .state('chat', {
+        url: "/chat",
+        templateUrl: "./js/views/chat/chat.html",
+        controller: "ChatController as chat",
+        onEnter: function(CurrentUser,$state){
+          if (!CurrentUser.getUser()) {
+            $state.go('login');
+          };
+        },
+      });
       // .state('topics', {
       //   url: "/topics",
       //   templateUrl: "./js/views/topics/index.html",
@@ -56,11 +68,9 @@ angular
       //   url: "/topics",
       //   templateUrl: "./js/views/topics/new.html"
       // })
-      .state('chat', {
-        url: "/chat",
-        templateUrl: "./js/views/chat/chat.html",
-        controller: "ChatController as chat"
-      });
-
+      // .state('register', {
+      //   url: "/register",
+      //   templateUrl: "./js/views/authentications/register.html"
+      // })
     $urlRouterProvider.otherwise("/");
   }

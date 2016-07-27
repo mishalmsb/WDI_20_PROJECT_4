@@ -88,8 +88,8 @@ io.on('connection', function(socket){
       io.sockets.in(data.room).emit('message', data);
     });
 
-    socket.on('offLine', function(data) {
-        //console.log(data);
+    socket.on('logOut', function(data) {
+        // console.log(data);
     });
 
 

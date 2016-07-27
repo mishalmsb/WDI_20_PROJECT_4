@@ -5,22 +5,18 @@ angular
 UsersController.$inject = ['User', 'CurrentUser', '$state' , 'SocketsService' , '$scope', '$window', '$mdDialog'];
 function UsersController(User, CurrentUser, $state , SocketsService , $scope, $window, $mdDialog){
 
-  var self = this;
-
-  self.all           = [];
-  self.user          = null;
-  self.currentUser   = null;
-  self.error         = null;
-  self.getUsers      = getUsers;
-  self.register      = register;
-  self.login         = login;
-  self.logout        = logout;
-  self.checkLoggedIn = checkLoggedIn;
-  self.chat          = "";
-  self.onlineUsers   = SocketsService.onlineUsers;
-  self.allTopics        = [];
-  var counter = 0;
-  self.socket = io();
+  var self            = this;
+  self.all            = [];
+  self.user           = null;
+  self.currentUser    = null;
+  self.error          = null;
+  self.getUsers       = getUsers;
+  self.register       = register;
+  self.login          = login;
+  self.checkLoggedIn  = checkLoggedIn;
+  self.chat           = "";
+  self.onlineUsers    = SocketsService.onlineUsers;
+  self.socket         = io();
 
   $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
       self.onlineUsers = newVal;
@@ -35,6 +31,7 @@ function UsersController(User, CurrentUser, $state , SocketsService , $scope, $w
     };
     SocketsService.sendMessege(newMessage);
     self.chat = "";
+
   }
 
   function getUsers() {
@@ -68,12 +65,12 @@ function UsersController(User, CurrentUser, $state , SocketsService , $scope, $w
     User.login(self.user, handleLogin, handleError);
   }
 
-  function logout() {
-    self.all         = [];
-    self.currentUser = null;
-    CurrentUser.clearUser();
-    self.onlineUsers   = null;
-  }
+  // self.logout = function() {
+  //   self.all         = [];
+  //   self.currentUser = null;
+  //   CurrentUser.clearUser();
+  //   self.onlineUsers   = null;
+  // }
 
   function checkLoggedIn() {
     self.currentUser = CurrentUser.getUser();
@@ -82,8 +79,8 @@ function UsersController(User, CurrentUser, $state , SocketsService , $scope, $w
 
   if (checkLoggedIn()) {
     self.getUsers();
+    $state.go('home');
   }
 
-  
   return self;
 }

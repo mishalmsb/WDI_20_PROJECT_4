@@ -7,38 +7,19 @@ function ChatController(SocketsService, CurrentUser, $state, $http, $element, $m
 
   var self          = this;
 
-  // $rootScope.$broadcast("hideVideo");
 
-  // $scope.$on('$stateChangeStart', function(event, toState) {
-  //   return $rootScope.$broadcast("showVideo");
-  // });
+  self.sendMessege = function() {
+    self.currentUser  = CurrentUser.getUser();
+    var newMessage = {
+      user:     self.currentUser,
+      message:  self.chat,
+      room:     "room1"
+    };
+    SocketsService.sendMessege(newMessage);
+    self.chat = "";
+  }
 
-  // self.currentUser  = null;
-  // self.chat         = "";
-  // self.currentUser  = CurrentUser.getUser();
-  // self.helpingUser  = null;
-  // self.onlineUsers   = SocketsService.onlineUsers;
-
-  // $scope.$watch(function(){ return SocketsService.onlineUsers }, function(newVal){
-  //     self.onlineUsers = newVal;
-  // } , true);
-
-  // self.sendMessege = function() {
-  //   self.currentUser  = CurrentUser.getUser();
-  //   var newMessage = {
-  //     user:     self.currentUser,
-  //     message:  self.chat,
-  //     room:     "room1"
-  //   };
-  //   SocketsService.sendMessege(newMessage);
-  //   self.chat = "";
-  // }
-
-  // angular.element(document).ready(function () {
-  //   console.log(SocketsService.onlineUsers);
-  // });
-
-  // return self;
+  return self;
 
 
 }
