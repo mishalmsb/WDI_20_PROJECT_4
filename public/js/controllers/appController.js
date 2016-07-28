@@ -7,6 +7,14 @@ app.controller('AppCtrl', ['$location', '$window', '$scope', '$mdBottomSheet','$
 
   self.currentUser = '';
   
+  $scope.logOrReg = true;
+  $scope.LogRegLabel = "Login"
+
+  $scope.toggleLogOrReg = function(){
+      $scope.logOrReg = !$scope.logOrReg;
+      $scope.LogRegLabel = $scope.LogRegLabel === 'Login' ? 'Register' : 'Login';
+  };
+
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
@@ -17,20 +25,24 @@ app.controller('AppCtrl', ['$location', '$window', '$scope', '$mdBottomSheet','$
 
   };
 
-  $scope.menu = [
-    {
-      link : 'home',
-      title: 'Desktop',
-      icon: 'person',
-      video: 'true'
-    },
-    {
-      link : 'chat',
-      title: 'Chat Overflow',
-      icon: 'message',
-      video: 'false'
-    }
-  ];
+
+
+  // $scope.menu = [
+  //   {
+  //     link : 'home',
+  //     title: 'Desktop',
+  //     icon: 'person',
+  //     logo: './assets/images/youtube.png',
+  //     video: 'true'
+  //   },
+  //   {
+  //     link : 'chat',
+  //     title: 'Chat Overflow',
+  //     icon: 'message',
+  //     logo: './assets/images/chat.png',
+  //     video: 'false'
+  //   }
+  // ];
 
   // $scope.alert = '';
 

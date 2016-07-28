@@ -1,38 +1,81 @@
-<div class="container chatRoom">
-    <div class="row">
-        <div class="conversation-wrap col-lg-3">
-            <div class="media conversation" ng-repeat="user in users.all | online:users.onlineUsers">
-                <a class="pull-left" href="#">
-                    <user-avatar></user-avatar>
-                    <!-- <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 50px; height: 50px;" src="img"> -->
-                </a>
-                <div class="media-body">
-                    <h5 class="media-heading"> {{user.local.username}} </h5>
-                </div>
-            </div>
-        </div>
-        <div class="message-wrap col-lg-8">
-            <div class="msg-wrap">
 
-                <div class="media msg ">
-                   <!--  <a class="pull-left" href="#">
-                        <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
-                    </a> -->
-                    <div class="media-body" id="chatMsg">
-                        <!-- <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small> -->
-                       <!--  <h5 class="media-heading"> name </h5>
-                        <small class="col-lg-10"> msg </small> -->
-                    </div>
+<div class="container">
+  <div class="row " style="padding-top:40px;">
+    <div class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          ONLINE CODERS
+        </div>
+        <div class="panel-body">
+          <ul class="media-list">
+            <li class="media" ng-repeat="user in users.all | online:users.onlineUsers">
+              <div class="media-body">
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <user-avatar></user-avatar>
+                  </a>
+                  <div class="media-body" >
+                    <h5 class="onlineUser"> {{user.local.username}} </h5>
+                    <small class="text-muted"> Developer </small>
+                  </div>
                 </div>
-            </div>
-            <form id="newChat" name="topics.newChatForm" ng-submit="users.sendMessege()" novalidate >
-              <div class="send-wrap ">
-                  <textarea class="form-control send-message" rows="3" placeholder="type messege..." ng-model="users.chat"></textarea>
+
               </div>
-              <div class="btn-panel">
-                  <md-button type="submit" class="md-primary btn" aria-label="Send Msg">Send</md-button>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+        CHATOVERFLOW
+        </div>
+        <div class="panel-body">
+          <ul class="media-list chatMsgs">
+
+            <!-- <li class="media">
+              <div class="media-body">
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object img-circle " src="assets/img/user.gif" />
+                  </a>
+                  <div class="media-body" >
+                    Donec sit amet ligula enim. Duis vel condimentum massa.
+
+                    Donec sit amet ligula enim. Duis vel condimentum massa.Donec sit amet ligula enim. 
+                    Duis vel condimentum massa.
+                    Donec sit amet ligula enim. Duis vel condimentum massa.
+                    <br />
+                    <small class="text-muted">Jhon Rexa | 23rd June at 5:00pm</small>
+                    <hr />
+                  </div>
+                </div>
+
+              </div>
+            </li> -->
+
+            
+
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <div class="input-group">
+            <form name="topics.newChatForm" role="form" class="chatForm" ng-submit="users.sendMessege()" novalidate >
+              <div class="input-group chatForm">
+                 <input type="text" class="form-control" placeholder="Enter Message" ng-submit="users.sendMessege()" ng-model="users.chat" />
+                 <span class="input-group-btn">
+                      <button type="submit" class="btn btn-info" type="button">SEND</button>
+                 </span>
               </div>
             </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

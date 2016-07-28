@@ -29,14 +29,13 @@ function VideosController(User, CurrentUser, $scope, $http){
   self.currentUser    = CurrentUser.getUser();
   self.newMusic       = {};
   self.display        = false;
-  self.searchName     = "";
+  self.searchName     = "Duft Punk";
 
   self.playVideo = function(src) {
     self.currentVideo = 'https://www.youtube.com/embed/' + src + '?rel=0&autoplay=1';
   };
 
   self.searchVideo = function() {
-    console.log("hello");
     $http.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         key: 'AIzaSyDT4cu22o-CksZ93t3SXFZURQzwhIlzlHE',
@@ -45,14 +44,14 @@ function VideosController(User, CurrentUser, $scope, $http){
         part: 'id,snippet',
         fields: 'items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/default,items/snippet/channelTitle',
         q: self.searchName
-        // q: "Duft Punk"
       }
     })
     .success( function (data) {
+      self.searchName = "";
       self.youTubeVideos = data;
     })
     .error( function (err) {
-      console.log(err);
+      self.searchName = "";
     });
 
   }
@@ -62,10 +61,6 @@ function VideosController(User, CurrentUser, $scope, $http){
     self.newMusic.youtubeId = src.id.videoId;
     self.newMusic.thumbnails = src.snippet.thumbnails.default.url
     self.all.push(self.newMusic);
-
-    console.log(self.newMusic.title);
-    console.log(self.newMusic.youtubeId);
-    console.log(self.newMusic.thumbnails);
     self.newMusic={};
   }
   self.deleteVideo = function(index) {

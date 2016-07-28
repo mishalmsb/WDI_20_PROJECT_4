@@ -89,7 +89,11 @@ io.on('connection', function(socket){
     });
 
     socket.on('logOut', function(data) {
-        // console.log(data);
+        var index = onlineUsers.indexOf(data._id);
+        if (index > -1) {
+            onlineUsers.splice(index, 1);
+        }
+        io.sockets.emit('onlineUser' , onlineUsers);
     });
 
 

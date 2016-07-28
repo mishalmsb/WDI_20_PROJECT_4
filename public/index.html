@@ -21,6 +21,7 @@
 
   <!-- Custom CSS Dependencies -->
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/chat.css">
   <!-- <link rel="stylesheet" href="./css/musicBox.css"> -->
 
   <!-- socket Dependencies -->
@@ -28,7 +29,10 @@
 
   <!-- JQuery -->
   <script src="/jquery/dist/jquery.min.js"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script   src="  https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
   <!-- Bootstrap Dependencies -->
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -66,13 +70,22 @@
     </div>
   </md-toolbar>
   <md-list>
-  <md-item ng-repeat="item in menu">
-    <a ui-sref={{item.link}}>
+  <!-- <md-item ng-repeat="item in menu">
+ -->    
+  <md-item>
+    <a ui-sref="home">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
         <div class="inset">
-          <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          <img src="./assets/images/youtube.png" class="menuImages" />
         </div>
-        <div class="inset">{{item.title}}
+      </md-item-content>
+    </a>
+  </md-item>  
+  <md-item>
+    <a ui-sref="chat">
+      <md-item-content md-ink-ripple layout="row" layout-align="start center">
+        <div class="inset">
+          <img src="./assets/images/chat.png" class="menuChatImg" />
         </div>
       </md-item-content>
     </a>
@@ -82,23 +95,24 @@
     <a href="#" ui-sref="login" ng-click="logout()">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
         <div class="inset">
-          <ng-md-icon icon="login"></ng-md-icon>
+          <!-- <ng-md-icon icon="login"></ng-md-icon> -->
+          <img ng-src='./assets/images/LogOut.png' class="menuImages" />
         </div>
-        <div class="inset">Logout
-        </div>
+       <!--  <div class="inset">Logout
+        </div> -->
       </md-item-content>
     </a>
   </md-item>
 
 </md-list>
 </md-sidenav>
-<div layout="column" class="relative" layout-fill role="main">
+<div layout="column" class="relative " layout-fill role="main">
   <md-toolbar ng-show="!showSearch">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools topBar">
       <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
         <ng-md-icon icon="menu"></ng-md-icon>
       </md-button>
-      <h3>
+      <h3 cla>
         LifeLine
       </h3>
       <span flex></span>
@@ -109,12 +123,7 @@
   <!-- VIDEOS -->
 <div class="videoBox" ng-controller="VideosController as videos" ng-show="checkPage()">
   <div id="container">
-    <div  class="searchRow">
-      <form id="search" ng-submit="videos.searchVideo()" novalidate>
-        <input id="submit" type="image" src="./assets/images/search.png" alt="Search">
-        <input id="query" type="text" placeholder="YouTube Search" ng-model="videos.searchName">
-      </form>
-    </div>
+    
 
     <div>
       <div class="col-md-6 nopadding">
@@ -131,8 +140,8 @@
           <div class="video ng-scope" ng-repeat="src in  videos.all track by $index">
             <img class="video-image" ng-src="{{src.thumbnails}}">
             <p class="video-title ng-binding">{{src.title}}</p>
-            <input type="button" class="video-buttons" value="PLAY" ng-click="videos.playVideo(src.youtubeId)">
-            <input type="button" class="video-buttons" value="DEL" ng-click="videos.deleteVideo($index)">
+            <input type="button" class="video-buttons play-button" ng-click="videos.playVideo(src.youtubeId)">
+            <input type="button" class="video-buttons del-button" ng-click="videos.deleteVideo($index)">
           </div>
           <!-- <ul >
             <li>
@@ -149,11 +158,17 @@
                 {{src.snippet.title}}
                 <button ng-click="videos.playVideo(src.id.videoId)">Play</button>
                 <button ng-click="videos.addVideo(src)">Add</button> -->
+          <div class="searchRow ">
+            <form id="search" ng-submit="videos.searchVideo()" novalidate>
+              <input id="submit" type="image" src="./assets/images/search.png" alt="Search">
+              <input id="query" type="text" placeholder="YouTube Search" ng-model="videos.searchName">
+            </form>
+          </div>
           <div class="video ng-scope" ng-repeat="src in videos.youTubeVideos.items track by $index" ng-click="queue(video.id, video.title)">
             <img class="video-image" ng-src="{{src.snippet.thumbnails.default.url}}">
             <p class="video-title ng-binding">{{src.snippet.title}}</p>
-            <input type="button" class="video-buttons" value="PLAY" ng-click="videos.playVideo(src.id.videoId)">
-            <input type="button" class="video-buttons" value="ADD" ng-click="videos.addVideo(src)">
+            <input type="button" class="video-buttons play-button" ng-click="videos.playVideo(src.id.videoId)">
+            <input type="button" class="video-buttons add-button" ng-click="videos.addVideo(src)">
           </div>
         </div>
       </div>

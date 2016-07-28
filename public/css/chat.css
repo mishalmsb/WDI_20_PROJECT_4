@@ -1,0 +1,17 @@
+.onlineUser {
+    text-transform: uppercase;
+}
+
+.panel-body
+{
+    height: 550px;
+    max-height: 550px;
+    overflow: auto;
+
+}
+.chatForm {
+  width: 100%;
+}
+.img-circle {
+  height: 50px;
+}

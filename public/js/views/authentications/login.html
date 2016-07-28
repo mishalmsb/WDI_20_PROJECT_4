@@ -1,20 +1,15 @@
-<div class="logTool">
-  <md-toolbar >
-    <ul  class="nav nav-pills logToggle">
-      <li class="active">
-        <a  href="#1a" data-toggle="tab">Login</a>
-      </li>
-      <li><a href="#2a" data-toggle="tab">Register</a>
-      </li>
-    </ul>
-  </md-toolbar>
-</div>
+  
+   <!--  <button ng-click="toggleLogOrReg()">{{ LogRegLabel }}</button> -->
+  
+
 
 
 <div class="overlay logBox">
+
   <div layout="column" layout-align="center center" layout-fill="layout-fill" >
+
     <div class="tab-content clearfix">
-      <div class="tab-pane active" id="1a">
+      <div  ng-show="logOrReg">
         <div layout="column" class="loginBox md-whiteframe-z1">
           <form id="login" name="users.loginForm" ng-submit="users.login()" novalidate>
             <md-toolbar>
@@ -28,13 +23,13 @@
               </md-input-container>
               <md-input-container>
                 <label>Password</label>
-                <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
+                <input type="password" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
               </md-input-container>
               <div layout="row" layout-align="center center" style="padding-top:20px;">
                 <md-button type="submit" class="md-raised md-primary">Login</md-button>
                 <div flex="flex"></div>
-               <!--  <md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button> -->
-              </div>
+                <a href="#" ng-click="toggleLogOrReg()">New user? click here to register</a>
+             </div>
             </md-content>
           </form>
         </div>
@@ -51,7 +46,7 @@
           <span ng-message="required">Password is required.</span>
         </div>
       </div>
-      <div class="tab-pane" id="2a">
+      <div ng-hide="logOrReg">
 
           <div layout="column" class="registerBox md-whiteframe-z1">
             <form id="register" name="users.registerForm" ng-submit="users.register()" novalidate>
@@ -76,16 +71,17 @@
                 </md-input-container >
                 <md-input-container class="regsterInput">
                   <label>Password</label>
-                  <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
+                  <input type="password" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
                 </md-input-container>
                 <md-input-container class="regsterInput">
                   <label>Password Confirmation</label>
-                  <input type="text" class="form-control" id="passwordConfirmation" name="passwordConfirmation"  placeholder="Password Confirmation" ng-model="users.user.passwordConfirmation" required>
+                  <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation"  placeholder="Password Confirmation" ng-model="users.user.passwordConfirmation" required>
                 </md-input-container>
                 <md-input-container class="regsterInput">
                   <div layout="row" layout-align="center center regsterInput1">
                     <md-button type="submit" class="md-raised md-primary regsterInput1">Register</md-button>
                     <div flex="flex"></div>
+                    <a href="#" ng-click="toggleLogOrReg()">Already registered? Click here to login</a>
                   </div>
               </md-content>
             </form>
@@ -114,3 +110,5 @@
 
   </div>
 </div>
+
+
