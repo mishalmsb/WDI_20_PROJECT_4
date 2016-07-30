@@ -70,8 +70,6 @@
     </div>
   </md-toolbar>
   <md-list>
-  <!-- <md-item ng-repeat="item in menu">
- -->    
   <md-item>
     <a ui-sref="home">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -80,7 +78,7 @@
         </div>
       </md-item-content>
     </a>
-  </md-item>  
+  </md-item>
   <md-item>
     <a ui-sref="chat">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -95,11 +93,8 @@
     <a href="#" ui-sref="login" ng-click="logout()">
       <md-item-content md-ink-ripple layout="row" layout-align="start center">
         <div class="inset">
-          <!-- <ng-md-icon icon="login"></ng-md-icon> -->
           <img ng-src='./assets/images/LogOut.png' class="menuImages" />
         </div>
-       <!--  <div class="inset">Logout
-        </div> -->
       </md-item-content>
     </a>
   </md-item>
@@ -119,45 +114,25 @@
     </div>
   </md-toolbar>
   <div>
-                                      <!-- FGBhQbmPwH8 -->
   <!-- VIDEOS -->
 <div class="videoBox" ng-controller="VideosController as videos" ng-show="checkPage()">
   <div id="container">
-    
+
 
     <div>
       <div class="col-md-6 nopadding">
 
         <iframe width="100%" class="youtube" ng-src="{{videos.currentVideo}}" frameborder="0" allowfullscreen></iframe>
         <div class="myVideos">
-          <!-- <div class="myVideosList" ng-repeat="src in videos.all track by $index">
-
-            <p class="video-title">
-              {{src.title}}
-            </p>
-
-          </div> -->
           <div class="video ng-scope" ng-repeat="src in  videos.all track by $index">
             <img class="video-image" ng-src="{{src.thumbnails}}">
             <p class="video-title ng-binding">{{src.title}}</p>
             <input type="button" class="video-buttons play-button" ng-click="videos.playVideo(src.youtubeId)">
             <input type="button" class="video-buttons del-button" ng-click="videos.deleteVideo($index)">
           </div>
-          <!-- <ul >
-            <li>
-              {{src.title}}
-              <md-button class="md-raised md-primary" ng-click="videos.playVideo(src.youtubeId)">Play</md-button>
-              <md-button class="md-raised md-primary" ng-click="videos.deleteVideo($index)">Delete</md-button>
-            </li>
-          </ul> -->
         </div>
       </div>
       <div class="col-md-6 vodeoSearchList nopadding">
-        <!-- <div ng-repeat="src in videos.youTubeVideos.items track by $index">
-                <img src={{src.snippet.thumbnails.default.url}}>
-                {{src.snippet.title}}
-                <button ng-click="videos.playVideo(src.id.videoId)">Play</button>
-                <button ng-click="videos.addVideo(src)">Add</button> -->
           <div class="searchRow ">
             <form id="search" ng-submit="videos.searchVideo()" novalidate>
               <input id="submit" type="image" src="./assets/images/search.png" alt="Search">
@@ -178,7 +153,9 @@
   <!-- VIDEOS -->
 
     <section ng-controller="UsersController as users">
-      <main class="md-fab md-fab-bottom-right body"  ui-view></main>
+      <main layout="column" class="relative  layout-fill layout-column" layout-fill="" role="main" ui-view>
+      <!-- <main class="md-fab md-fab-bottom-right body"  ui-view> -->
+      </main>
     </section>
 
   </div>
